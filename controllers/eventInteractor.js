@@ -36,7 +36,7 @@ const eventInteractor = {
         //     subject: 'Welcome!',
         //     body: 'Welcome to the application!!!'
         // })
-        return newUser;
+        return event;
     },
     
     async getEvents({ eventPersistence }) {
