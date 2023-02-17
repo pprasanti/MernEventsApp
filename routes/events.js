@@ -20,8 +20,8 @@ router.get('/', async (req, res) => {
     try {
         const events = await eventInteractor.getEvents({ eventPersistence })
 
-        res.json(events)
-        // res.render('events/index', { events })
+        // res.json(events)
+        res.render('events/index', { events })
     } catch (err) {
         console.log(err)
         res.status(500).send('Internal Server Error!!!')
@@ -36,8 +36,8 @@ router.get('/:id/edit', async (req, res) => {
     try {
         const event = await eventInteractor.getEvent({ eventPersistence }, id)
 
-        res.json(event)
-        // res.render('events/edit', { event })
+        // res.json(event)
+        res.render('events/edit', { event })
     } catch (err) {
         console.log(err)
         res.status(500).send('Internal Server Error!!!')
@@ -61,8 +61,8 @@ router.post('/', async (req, res) => {
             { eventPersistence, emailPersistence },
             { name, address }
         )
-        res.json(newEvent)
-        // res.render('/events');
+        // res.json(newEvent)
+        res.render('/events');
     } catch (err) {
         console.log(err)
         res.status(500).send('Internal Server Error!!!')
@@ -77,8 +77,8 @@ router.get('/:id', async (req, res) => {
     try {
         const event = await eventInteractor.getEvent({ eventPersistence }, id)
 
-        res.json(event)
-        // res.render('events/show', { event })
+        // res.json(event)
+        res.render('events/show', { event })
     } catch (err) {
         console.log(err)
         res.status(500).send('Internal Server Error!!!')
@@ -101,8 +101,8 @@ router.patch('/:id', async (req, res) => {
         )
 
         //redirect back to index (or wherever you want)
-        res.json(event)
-        // res.render('/events')
+        // res.json(event)
+        res.render('/events')
     } catch (err) {
         console.log(err)
         res.status(500).send('Internal Server Error!!!')
@@ -122,8 +122,8 @@ router.delete('/:id', async (req, res) => {
         )
 
         //redirect back to index (or wherever you want)
-        res.status(200).send("Event Deleted!!!")
-        // res.render('/events')
+        // res.status(200).send("Event Deleted!!!")
+        res.render('/events')
     } catch (err) {
         console.log(err)
         res.status(500).send('Internal Server Error!!!')
