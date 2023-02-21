@@ -1,4 +1,4 @@
-import { connect as mongoConnection } from "./mongoConnections.js"
+import { dbConnect as mongoConnection } from "./mongo/mongoConnections.js"
 
 // provider: String,
 export function connectDB(provider) {

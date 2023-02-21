@@ -40,11 +40,12 @@ eventSchema.methods
     return mongoose.model('Event').insertMany([{ event }])
 })
 
-eventSchema.static.findByType = (type) => {
+eventSchema.statics.findByType = (type) => {
     return this.find({ type: new RegExp(type, 'i') })
 }
 
-eventSchema.virtual("fullName").get(function() {
+eventSchema.virtual("fullName")
+.get(function() {
     return `${this.name} , DESC - ${this.description}`
 })
 .set(function() {

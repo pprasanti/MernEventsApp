@@ -3,24 +3,15 @@ import path from 'path'
 import { fileURLToPath, pathToFileURL } from 'url';
 import methodOverride from 'method-override'
 import eventRouter from './routes/events.js'
-import dotenv from 'dotenv'
-// Connect to DB
-// import { connect } from './db/mongoConnections.js'
-// connect()
 
 // Inject DB Provider type & connect to DB
+import { loadConfig } from './config/index.js';
 import { connectDB } from './db/connection.js';
 
-if ('DEV' == process.argv[2]) {
-    dotenv.config({ path: '.env.dev' })
-} else {
-    dotenv.config()
-}
-
-console.log(process.argv[2], process.env.MONGODB_CLUSTER)
-connectDB(process.env.DB_PROVIDER_MONGO)
-
 const app = new express();
+
+loadConfig()
+connectDB(process.env.DB_PROVIDER_MONGO)
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())

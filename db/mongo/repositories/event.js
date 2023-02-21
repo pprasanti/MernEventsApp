@@ -1,13 +1,10 @@
+import Event from '../../../models/event.js'
+import { seedDB } from "../seeds/index.js";
 
-import Event from "../models/event.js";
-import seedEvents from "../db/seeds/event.js";
-
-const eventController = {
+const repository = {
 
     async seedEvents() {
-        await Event.insertMany(seedEvents)
-            .then(data => console.log("Seed Events successfuly!!"))
-            .catch(err => console.error("Failed while running seed."))
+        await seedDB()
     },
 
     async createEvent(event) {
@@ -51,4 +48,4 @@ const eventController = {
     },
 }
 
-export default eventController
+export default repository

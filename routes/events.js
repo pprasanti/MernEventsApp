@@ -1,6 +1,7 @@
 import express from 'express';
-import eventController from './../controllers/event.js'
+import eventService from '../services/event.js';
 import Event from './../models/event.js';
+import eventRepository from '../db/mongo/repositories/event.js';
 
 const router = express.Router()
 
@@ -15,7 +16,7 @@ router.use((req, res, next) => {
 // **********************************
 router.get('/', async (req, res) => {
     try {
-        const events = await eventController.getEvents()
+        const events = await eventService.getEvents({ eventRepository })
 
         // res.status(200).json(events)
         res.render('events/index', { events })
@@ -31,7 +32,7 @@ router.get('/', async (req, res) => {
 // **********************************
 router.get('/seed', async (req, res) => {
     try {
-        const events = await eventController.seedEvents()
+        const events = await eventService.seedEvents({ eventRepository })
 
         // res.status(200).json(events)
         res.redirect('/events')
@@ -55,7 +56,7 @@ router.post('/', async (req, res) => {
     try {
         const event = new Event(req.body);
 
-        const newEvent = await eventController.createEvent(event)
+        const newEvent = await eventService.createEvent({ eventRepository }, event)
         // res.json(newEvent)
         res.redirect('/events');
     } catch (err) {
@@ -70,7 +71,7 @@ router.post('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     const { id } = req.params
     try {
-        const event = await eventController.getEvent(id)
+        const event = await eventService.getEvent({ eventRepository }, id)
 
         // res.json(event)
         res.render('events/show', { event })
@@ -86,7 +87,7 @@ router.get('/:id', async (req, res) => {
 router.get('/:id/edit', async (req, res) => {
     const { id } = req.params
     try {
-        const event = await eventController.getEvent(id)
+        const event = await eventService.getEvent({ eventRepository }, id)
 
         // res.json(event)
         res.render('events/edit', { id, event })
@@ -105,7 +106,7 @@ router.patch('/:id', async (req, res) => {
     const event = req.body;
 
     try {
-        const eventUpd = await eventController.updateEvent({ id, event })
+        const eventUpd = await eventService.updateEvent({ eventRepository }, { id, event })
         // res.json(eventUpd)
         //redirect back to index (or wherever you want)
         res.redirect('/events');
@@ -122,7 +123,7 @@ router.delete('/:id', async (req, res) => {
     //get new data from req.body
     const { id } = req.params;
     try {
-        const newEvent = await eventController.deleteEvent(id)
+        const newEvent = await eventService.deleteEvent({ eventRepository }, id)
 
         //redirect back to index (or wherever you want)
         // res.status(200).send("Event Deleted!!!")
