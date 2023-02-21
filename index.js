@@ -9,9 +9,15 @@ import dotenv from 'dotenv'
 // connect()
 
 // Inject DB Provider type & connect to DB
-import {connectDB} from './db/connection.js';
+import { connectDB } from './db/connection.js';
 
-dotenv.config()
+if ('DEV' == process.argv[2]) {
+    dotenv.config({ path: '.env.dev' })
+} else {
+    dotenv.config()
+}
+
+console.log(process.argv[2], process.env.MONGODB_CLUSTER)
 connectDB(process.env.DB_PROVIDER_MONGO)
 
 const app = new express();
