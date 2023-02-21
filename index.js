@@ -3,9 +3,11 @@ import path from 'path'
 import { fileURLToPath, pathToFileURL } from 'url';
 import methodOverride from 'method-override'
 import eventRouter from './routes/events.js'
-import { connect } from './config/mongoConnections.js'
+import { connect } from './db/mongoConnections.js'
+import dotenv from 'dotenv'
 
 // Connect to DB
+dotenv.config({path: './env/mongo.env'})
 connect()
 
 const app = new express();
