@@ -14,19 +14,40 @@
     </head>
     <body>
         <h1>Event Deatils</h1>
-        <form >
-            <section>
-                <label for="name">Enter Event Name : </label>
-                <label id="name" name="name"><%= event.name %></label>
-            </section>
-            <section>
-                <label for="address">Enter Address : </label>
-                <label id="address" name="address"><%= event.address %></label>
-            </section>
-        </form>
-        <br>
         <a href="/events">Back to Events List</a>
-
+        <br><br>
+        <section>
+            <form action="/events/<%= event._id %>?_method=PATCH" method="post">
+                <section>
+                    <label for="name">Event Name : </label>
+                    <label id="name" name="name"><%= event.name %></label>
+                </section>
+                <section>
+                    <label for="description">Description : </label>
+                    <label id="description" name="description"><%= event.description %></label>
+                </section>
+                <section>
+                    <label for="address">Address : </label>
+                    <label id="address" name="address"><%= event.address %></label>
+                </section>
+                <section>
+                    <label for="website">Website : </label>
+                    <label id="website" name="website"><%= event.website %></label>
+                </section>
+                <section>
+                    <label for="phone">Phone : </label>
+                    <label id="phone" name="phone"><%= event.phone %></label>
+                </section>
+                <section>
+                    <label for="image">Image : </label>
+                    <label id="image" name="image"><%= event.image %></label>
+                </section>
+                <section>
+                    <label for="priceStarts">Starts From : </label>
+                    <label id="priceStarts" name="priceStarts"><%= event.priceStarts %></label>
+                </section>
+            </form>
+        </section>
         <%   %>
       
         <!--[if lt IE 7]>

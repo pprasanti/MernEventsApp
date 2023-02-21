@@ -16,30 +16,44 @@
         </script>
     </head>
     <body>
-        <%
-        let id = '',  name = '', address = '';
-        if (undefined != event) {
-                id= event.id 
-                name= event.name 
-                address= event.address 
-               }
-        %>
-        <h1>Create New Event</h1>
-        <form action="/events/<%= id %>?_method=PATCH" method="post">
-            <section>
-                <label for="name">Enter Event Name : </label>
-                <input type="text" id="name" name="name" placeholder="Name" value="<%= name %>"></input>
-            </section>
-            <section>
-                <label for="address">Enter Address : </label>
-                <br>
-                <textarea id="address" name="address" cols="32" rows="4" placeholder="Address"><%= address %></textarea>
-            </section>
-            <button>Submit</button>
-        </form>
+        <h1>Update Event</h1>
         <a href="/events">Back to Events List</a>
-
-        <%   %>
+        <br><br>
+        <section>
+            <form action="/events/<%= id %>?_method=PATCH" method="post">
+                <section>
+                    <label for="name">Event Name : </label>
+                    <input type="text" id="name" name="name" value="<%= event.name %>" placeholder="Name" ></input>
+                </section>
+                <section>
+                    <label for="description">Description : </label>
+                    <br>
+                    <textarea id="description" name="description" cols="32" rows="4" placeholder="Description"><%= event.description %></textarea>
+                </section>
+                <section>
+                    <label for="address">Address : </label>
+                    <br>
+                    <textarea id="address" name="address" cols="32" rows="4" placeholder="Address"><%= event.address %></textarea>
+                </section>
+                <section>
+                    <label for="website">Website : </label>
+                    <input type="text" id="website" name="website" value="<%= event.website %>" placeholder="Website"></input>
+                </section>
+                <section>
+                    <label for="phone">Phone : </label>
+                    <input type="text" id="phone" name="phone" value="<%= event.phone %>" placeholder="Phone"></input>
+                </section>
+                <section>
+                    <label for="image">Image : </label>
+                    <input type="text" id="image" name="image" value="<%= event.image %>" placeholder="Image"></input>
+                </section>
+                <section>
+                    <label for="priceStarts">Starts From : </label>
+                    <input type="text" id="priceStarts" name="priceStarts" value="<%= event.priceStarts %>" placeholder="Starts From"></input>
+                </section>
+                <button>Submit</button>
+            </form>
+        </section>
       
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>

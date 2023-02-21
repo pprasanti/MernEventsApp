@@ -1,7 +1,6 @@
 import express from 'express';
-import eventInteractor from './../controllers/eventInteractor.js'
-import eventPersistence from './../models/eventPersistence.js'
-import emailPersistence from './../models/emailPersistence.js'
+import eventController from './../controllers/event.js'
+import Event from './../models/event.js';
 
 const router = express.Router()
 
@@ -11,16 +10,14 @@ router.use((req, res, next) => {
     next()
 })
 
-console.dir(eventInteractor)
-
 // **********************************
 // INDEX - renders multiple events
 // **********************************
 router.get('/', async (req, res) => {
     try {
-        const events = await eventInteractor.getEvents({ eventPersistence })
+        const events = await eventController.getEvents()
 
-        // res.json(events)
+        // res.status(200).json(events)
         res.render('events/index', { events })
     } catch (err) {
         console.log(err)
@@ -28,16 +25,16 @@ router.get('/', async (req, res) => {
     }
 })
 
-// *******************************************
-// EDIT - renders a form to edit an event
-// *******************************************
-router.get('/:id/edit', async (req, res) => {
-    const { id } = req.params
-    try {
-        const event = await eventInteractor.getEvent({ eventPersistence }, id)
 
-        // res.json(event)
-        res.render('events/edit', { event })
+// **********************************
+// INDEX - renders multiple events
+// **********************************
+router.get('/seed', async (req, res) => {
+    try {
+        const events = await eventController.seedEvents()
+
+        // res.status(200).json(events)
+        res.redirect('/events')
     } catch (err) {
         console.log(err)
         res.status(500).send('Internal Server Error!!!')
@@ -55,14 +52,12 @@ router.get('/new', (req, res) => {
 // CREATE - creates a new event
 // **********************************
 router.post('/', async (req, res) => {
-    const { name, address } = req.body;
     try {
-        const newEvent = await eventInteractor.createEvent(
-            { eventPersistence, emailPersistence },
-            { name, address }
-        )
+        const event = new Event(req.body);
+
+        const newEvent = await eventController.createEvent(event)
         // res.json(newEvent)
-        res.render('/events');
+        res.redirect('/events');
     } catch (err) {
         console.log(err)
         res.status(500).send('Internal Server Error!!!')
@@ -75,7 +70,7 @@ router.post('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     const { id } = req.params
     try {
-        const event = await eventInteractor.getEvent({ eventPersistence }, id)
+        const event = await eventController.getEvent(id)
 
         // res.json(event)
         res.render('events/show', { event })
@@ -85,27 +80,38 @@ router.get('/:id', async (req, res) => {
     }
 })
 
+// *******************************************
+// EDIT - renders a form to edit an event
+// *******************************************
+router.get('/:id/edit', async (req, res) => {
+    const { id } = req.params
+    try {
+        const event = await eventController.getEvent(id)
+
+        // res.json(event)
+        res.render('events/edit', { id, event })
+    } catch (err) {
+        console.log(err)
+        res.status(500).send('Internal Server Error!!!')
+    }
+})
 
 // *******************************************
 // UPDATE - updates a particular event
 // *******************************************
 router.patch('/:id', async (req, res) => {
     const { id } = req.params;
-
     //get new data from req.body
-    const { name, address } = req.body;
-    try {
-        const event = await eventInteractor.updateEvent(
-            { eventPersistence, emailPersistence },
-            { id, name, address }
-        )
+    const event = req.body;
 
+    try {
+        const eventUpd = await eventController.updateEvent({ id, event })
+        // res.json(eventUpd)
         //redirect back to index (or wherever you want)
-        // res.json(event)
-        res.render('/events')
+        res.redirect('/events');
     } catch (err) {
         console.log(err)
-        res.status(500).send('Internal Server Error!!!')
+        // res.status(500).send('Internal Server Error!!!')
     }
 })
 
@@ -116,14 +122,11 @@ router.delete('/:id', async (req, res) => {
     //get new data from req.body
     const { id } = req.params;
     try {
-        const newEvent = await eventInteractor.deleteEvent(
-            { eventPersistence },
-            id
-        )
+        const newEvent = await eventController.deleteEvent(id)
 
         //redirect back to index (or wherever you want)
         // res.status(200).send("Event Deleted!!!")
-        res.render('/events')
+        res.redirect('/events');
     } catch (err) {
         console.log(err)
         res.status(500).send('Internal Server Error!!!')

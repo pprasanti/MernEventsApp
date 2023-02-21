@@ -3,6 +3,10 @@ import path from 'path'
 import { fileURLToPath, pathToFileURL } from 'url';
 import methodOverride from 'method-override'
 import eventRouter from './routes/events.js'
+import { connect } from './config/mongoConnections.js'
+
+// Connect to DB
+connect()
 
 const app = new express();
 

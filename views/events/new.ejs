@@ -14,22 +14,44 @@
     </head>
     <body>
         <h1>Create New Event</h1>
-        <form action="/events" method="post">
-            <section>
-                <label for="name">Enter Event Name : </label>
-                <input type="text" id="name" name="name" placeholder="Name"></input>
-            </section>
-            <section>
-                <label for="address">Enter Address : </label>
-                <br>
-                <textarea id="address" name="address" cols="32" rows="4" placeholder="Address"></textarea>
-            </section>
-            <button>Submit</button>
-        </form>
         <a href="/events">Back to Events List</a>
+        <br><br>
+        <section>
+            <form action="/events" method="post">
+                <section>
+                    <label for="name">Event Name : </label>
+                    <input type="text" id="name" name="name" placeholder="Name"></input>
+                </section>
+                <section>
+                    <label for="description">Description : </label>
+                    <br>
+                    <textarea id="description" name="description" cols="32" rows="4" placeholder="Description"></textarea>
+                </section>
+                <section>
+                    <label for="address">Address : </label>
+                    <br>
+                    <textarea id="address" name="address" cols="32" rows="4" placeholder="Address"></textarea>
+                </section>
+                <section>
+                    <label for="website">Website : </label>
+                    <input type="text" id="website" name="website" placeholder="Website"></input>
+                </section>
+                <section>
+                    <label for="phone">Phone : </label>
+                    <input type="text" id="phone" name="phone" placeholder="Phone"></input>
+                </section>
+                <section>
+                    <label for="image">Image : </label>
+                    <input type="text" id="image" name="image" placeholder="Image"></input>
+                </section>
+                <section>
+                    <label for="priceStarts">Starts From : </label>
+                    <input type="text" id="priceStarts" name="priceStarts" placeholder="Starts From"></input>
+                </section>
+                <button>Submit</button>
+            </form>
+        </section>
 
-        <%   %>
-      
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->

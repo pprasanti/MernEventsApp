@@ -11,36 +11,82 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="" />
+    <style>
+      td {
+        border : 1px solid black
+      }
+    </style>
   </head>
   <body>
     <h1>Events</h1>
+    <section>
+      <a href="/events/new">Add Event</a>
+    </section>  
+    <br>
 
-    <ul>
+    <section>
+      <table style="border : 0.5px solid black">
+        <thead>
+          <th>
+            <tr >
+              <td>Id</td>
+              <td>Name</td>
+              <td>Description</td>
+              <td>Address</td>
+              <td>Website</td>
+              <td>Phone</td>
+              <td>Image</td>
+              <td>Starts From</td>
+              <td colspan="2">Action</td>
+            </tr>
+          </th>
+        </thead>
+        <tbody>
+          <% for(let event of events ) { %>
+          <tr>
+            <td><%= event.id %></td>
+            <td><a href="/events/<%= event._id %>"><%= event.name %></a></td>
+            <td><%= event.description %></td>
+            <td><%= event.address %></td>
+            <td><%= event.website %></td>
+            <td><%= event.phone %></td>
+            <td><%= event.img %></td>
+            <td><%= event.priceStarts %></td>
+            <td>
+              <a href="/events/<%= event._id %>/edit">Edit</a>
+            </td>
+            <td>
+              <form
+                  action="/events/<%= event._id %>?_method=DELETE"
+                  method="post"
+                >
+                <button>Delete</button>
+              </form>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- <ul>
       <li><b> ID - NAME - ADDRESSS </b></li>
 
       <% for(let event of events ) { %>
       <section>
         <div class="row">
-        <li>
-          <%= event.id %> - <%= event.name %> - <%= event.address %>
-          <a href="/events/<%= event.id %>">View</a>
-          <a href="/events/<%= event.id %>/edit">Edit</a>
-          <form action="/events/<%= event.id %>?_method=DELETE" method="post">
-            <button>Delete</button>
-          </form>
-        </li>
-    </div>
+          <li>
+            <%= event.id %> - <%= event.name %> - <%= event.address %>
+            <a href="/events/<%= event.id %>">View</a>
+            <a href="/events/<%= event.id %>/edit">Edit</a>
+            <form action="/events/<%= event.id %>?_method=DELETE" method="post">
+              <button>Delete</button>
+            </form>
+          </li>
+        </div>
       </section>
       <% } %>
-    </ul>
-    <a href="/events/new">Add Event</a>
-
-    <!--[if lt IE 7]>
-      <p class="browsehappy">
-        You are using an <strong>outdated</strong> browser. Please
-        <a href="#">upgrade your browser</a> to improve your experience.
-      </p>
-    <![endif]-->
+    </ul> -->
 
     <script src="" async defer></script>
   </body>
