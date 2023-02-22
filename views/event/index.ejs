@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Events</title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="" />
+  <style>
+    td {
+      border: 1px solid black
+    }
+
+    a {
+      padding: 2px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Events</h1>
+  <section>
+    <a href="/events/new">Add Event</a>
+  </section>
+  <br>
+
+  <section>
+    <table style="border : 0.5px solid black">
+      <thead>
+        <th>
+          <tr style="text-align: center; font-weight: bold;">
+            <td>Name</td>
+            <td>Description</td>
+            <td>Address</td>
+            <td>Website</td>
+            <td>Phone</td>
+            <td>Image</td>
+            <td>Starts From</td>
+            <td colspan="2">Action</td>
+          </tr>
+        </th>
+      </thead>
+      <tbody>
+        <% for(let event of events ) { %>
+          <tr>
+            <td><a href="/events/<%= event._id %>">
+                <%= event.name %>
+              </a></td>
+            <td>
+              <%= event.description %>
+            </td>
+            <td>
+              <%= event.address %>
+            </td>
+            <td>
+              <%= event.website %>
+            </td>
+            <td>
+              <%= event.phone %>
+            </td>
+            <td>
+              <%= event.img %>
+            </td>
+            <td>
+              <%= event.priceStarts %>
+            </td>
+            <td>
+              <section>
+                <a href="/events/<%= event._id %>/edit">Edit</a>
+                <a href="/events/<%= event._id %>/comments/new">Add Comment</a>
+                <a href="/events/<%= event._id %>/comments">View Comments</a>
+              </section>
+            </td>
+            <td>
+              <form action="/events/<%= event._id %>?_method=DELETE" method="post">
+                <button>Delete</button>
+              </form>
+            </td>
+          </tr>
+          <% } %>
+      </tbody>
+    </table>
+  </section>
+  <script src="" async defer></script>
+</body>
+
+</html>

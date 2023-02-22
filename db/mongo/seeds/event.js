@@ -1,4 +1,16 @@
-const seedEvents =
+import Event from "../../../models/event.js"
+
+export const seedEvents = async () => {
+  await Event.deleteMany({})
+    .then(data => console.log("Deleted all Events successfuly!!"))
+    .catch(err => console.error("Failed while Deleting all."))
+
+  await Event.insertMany(users)
+    .then(data => console.log("Seed Events successfuly!!"))
+    .catch(err => console.error("Failed while running seed."))
+}
+
+export const events =
   [
     {
       name: 'Event 1',
@@ -7,7 +19,8 @@ const seedEvents =
       website: 'www.xyz1.com',
       priceStarts: 100000,
       img: '',
-      phone: 9886731992
+      phone: 9886731992,
+      comments: []
     },
     {
       name: 'Event 4',
@@ -16,7 +29,8 @@ const seedEvents =
       website: 'www.xyz4.com',
       priceStarts: 100000,
       img: '',
-      phone: 9886731992
+      phone: 9886731992,
+      comments: []
     },
     {
       name: 'Event 5',
@@ -25,7 +39,8 @@ const seedEvents =
       website: 'www.xyz5.com',
       priceStarts: 100000,
       img: '',
-      phone: 9886731992
+      phone: 9886731992,
+      comments: []
     },
     {
       name: 'Event 6',
@@ -34,7 +49,8 @@ const seedEvents =
       website: 'www.xyz6.com',
       priceStarts: 100000,
       img: '',
-      phone: 9886731992
+      phone: 9886731992,
+      comments: []
     },
     {
       name: 'Event 3',
@@ -43,7 +59,8 @@ const seedEvents =
       website: 'www.xyz3.com',
       priceStarts: 100000,
       img: '',
-      phone: 9886731992
+      phone: 9886731992,
+      comments: []
     },
     {
       name: 'Event 8',
@@ -52,7 +69,8 @@ const seedEvents =
       website: 'www.xyz8.com',
       priceStarts: 100000,
       img: '',
-      phone: 9886731992
+      phone: 9886731992,
+      comments: []
     },
     {
       name: 'Event 2',
@@ -61,7 +79,8 @@ const seedEvents =
       website: 'www.xyz2.com',
       priceStarts: 100000,
       img: '',
-      phone: 9886731992
+      phone: 9886731992,
+      comments: []
     },
     {
       name: 'Event 10',
@@ -70,7 +89,8 @@ const seedEvents =
       website: 'www.xyz10.com',
       priceStarts: 100000,
       img: '',
-      phone: 9886731992
+      phone: 9886731992,
+      comments: []
     },
     {
       name: 'Event 7',
@@ -79,7 +99,8 @@ const seedEvents =
       website: 'www.xyz7.com',
       priceStarts: 100000,
       img: '',
-      phone: 9886731992
+      phone: 9886731992,
+      comments: []
     },
     {
       name: 'Event 9',
@@ -88,12 +109,7 @@ const seedEvents =
       website: 'www.xyz9.com',
       priceStarts: 100000,
       img: '',
-      phone: 9886731992
+      phone: 9886731992,
+      comments: []
     }
   ]
-
-// await Event.insertMany(seedEvents)
-// .then(data => console.log("Ran seed successfuly!!"))
-// .catch(err => console.error("Failed while running seed."))
-
-export default seedEvents

@@ -2,7 +2,9 @@ import express from 'express'
 import path from 'path'
 import { fileURLToPath, pathToFileURL } from 'url';
 import methodOverride from 'method-override'
-import eventRouter from './routes/events.js'
+import eventRouter from './routes/event.js'
+import userRouter from './routes/user.js'
+import { seedDB } from './db/mongo/seeds/index.js';
 
 // Inject DB Provider type & connect to DB
 import { loadConfig } from './config/index.js';
@@ -21,9 +23,14 @@ app.set('views', path.join(path.dirname(fileURLToPath(import.meta.url)), 'views'
 app.set('view engine', 'ejs')
 
 app.use('/events', eventRouter)
+app.use('/users', userRouter)
 
 app.get('/', (req, res) => {
     res.json({ kk: "Welcome to Node JS App!!!" })
+})
+
+app.get('/seed', (req, res) => {
+    seedDB()
 })
 
 app.listen(3000, () => {

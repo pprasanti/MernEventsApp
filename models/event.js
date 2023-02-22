@@ -29,6 +29,10 @@ const eventSchema = new Schema(
             type: Number,
             length: [10, 'Phone No. must be 10 digi']
         },
+        comments: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Comment'
+        }],
     }
 )
 

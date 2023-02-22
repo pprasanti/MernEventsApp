@@ -1,10 +1,10 @@
 import Event from '../../../models/event.js'
-import { seedDB } from "../seeds/index.js";
+import { seedEvents } from '../seeds/event.js';
 
 const repository = {
 
     async seedEvents() {
-        await seedDB()
+        await seedEvents()
     },
 
     async createEvent(event) {
@@ -28,7 +28,7 @@ const repository = {
     },
 
     async getEvents() {
-        const events = await Event.find({ __v: 0 })
+        const events = await Event.find({}, {__v: 0})
             .then(data => data)
             .catch(err => console.error(err))
 
@@ -36,7 +36,7 @@ const repository = {
     },
 
     async getEvent(id) {
-        const event = await Event.findById(id, { _id: 0, __v: 0 })
+        const event = await Event.findById(id, {  __v: 0 })
             .then(data => data)
             .catch(err => console.error(err))
 

@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Events</title>
+    <title>Users</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="" />
@@ -18,9 +18,9 @@
     </style>
   </head>
   <body>
-    <h1>Events</h1>
+    <h1>Users</h1>
     <section>
-      <a href="/events/new">Add Event</a>
+      <a href="/users/new">Add User</a>
     </section>  
     <br>
 
@@ -29,35 +29,29 @@
         <thead>
           <th>
             <tr >
-              <td>Id</td>
               <td>Name</td>
-              <td>Description</td>
               <td>Address</td>
-              <td>Website</td>
+              <td>Email</td>
               <td>Phone</td>
               <td>Image</td>
-              <td>Starts From</td>
               <td colspan="2">Action</td>
             </tr>
           </th>
         </thead>
         <tbody>
-          <% for(let event of events ) { %>
+          <% for(let user of users ) { %>
           <tr>
-            <td><%= event.id %></td>
-            <td><a href="/events/<%= event._id %>"><%= event.name %></a></td>
-            <td><%= event.description %></td>
-            <td><%= event.address %></td>
-            <td><%= event.website %></td>
-            <td><%= event.phone %></td>
-            <td><%= event.img %></td>
-            <td><%= event.priceStarts %></td>
+            <td><a href="/users/<%= user._id %>"><%= user.fullName %></a></td>
+            <td><%= user.address %></td>
+            <td><%= user.email %></td>
+            <td><%= user.phone %></td>
+            <td><%= user.img %></td>
             <td>
-              <a href="/events/<%= event._id %>/edit">Edit</a>
+              <a href="/users/<%= user._id %>/edit">Edit</a>
             </td>
             <td>
               <form
-                  action="/events/<%= event._id %>?_method=DELETE"
+                  action="/users/<%= user._id %>?_method=DELETE"
                   method="post"
                 >
                 <button>Delete</button>
@@ -72,14 +66,14 @@
     <!-- <ul>
       <li><b> ID - NAME - ADDRESSS </b></li>
 
-      <% for(let event of events ) { %>
+      <% for(let user of users ) { %>
       <section>
         <div class="row">
           <li>
-            <%= event.id %> - <%= event.name %> - <%= event.address %>
-            <a href="/events/<%= event.id %>">View</a>
-            <a href="/events/<%= event.id %>/edit">Edit</a>
-            <form action="/events/<%= event.id %>?_method=DELETE" method="post">
+            <%= user.id %> - <%= user.name %> - <%= user.address %>
+            <a href="/users/<%= user.id %>">View</a>
+            <a href="/users/<%= user.id %>/edit">Edit</a>
+            <form action="/users/<%= user.id %>?_method=DELETE" method="post">
               <button>Delete</button>
             </form>
           </li>

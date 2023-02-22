@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Users</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script>
+
+        </script>
+    </head>
+    <body>
+        <h1>Update User</h1>
+        <a href="/users">Back to Users List</a>
+        <br><br>
+        <section>
+            <form action="/users/<%= id %>?_method=PATCH" method="post">
+                <section>
+                    <label for="name">First Name : </label>
+                    <input type="text" id="firstName" name="firstName" value="<%= user.firstName %>" placeholder="First Name" ></input>
+                </section>
+                <section>
+                    <label for="name">Last Name : </label>
+                    <input type="text" id="lastName" name="lastName" value="<%= user.lastName %>" placeholder="Last Name" ></input>
+                </section>
+                <section>
+                    <label for="address">Address : </label>
+                    <br>
+                    <section>
+                        <label for="street">Street : </label>
+                        <br>
+                        <input type="text" id="street" name="street" value="<%= user.address.street %>" placeholder="Street" ></input>
+                    </section>
+                    <section>
+                        <label for="city">City : </label>
+                        <br>
+                        <input type="text" id="city" name="city" value="<%= user.city %>" placeholder="City" ></input>
+                    </section>
+                    <section>
+                        <label for="state">State : </label>
+                        <br>
+                        <input type="text" id="state" name="state" value="<%= user.state %>" placeholder="State" ></input>
+                    </section>
+                    <section>
+                        <label for="country">Country : </label>
+                        <br>
+                        <input type="text" id="country" name="country" value="<%= user.country %>" placeholder="Country" ></input>
+                    </section>
+                </section>
+                <section>
+                    <label for="email">Email : </label>
+                    <input type="text" id="email" name="email" value="<%= user.email %>" placeholder="Email"></input>
+                </section>
+                <section>
+                    <label for="phone">Phone : </label>
+                    <input type="text" id="phone" name="phone" value="<%= user.phone %>" placeholder="Phone"></input>
+                </section>
+                <section>
+                    <label for="image">Image : </label>
+                    <input type="text" id="image" name="image" value="<%= user.image %>" placeholder="Image"></input>
+                </section>
+                <button>Submit</button>
+            </form>
+        </section>
+      
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>

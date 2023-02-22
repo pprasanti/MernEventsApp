@@ -7,44 +7,44 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Events</title>
+        <title>Users</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
     </head>
     <body>
-        <h1>Event Deatils</h1>
-        <a href="/events">Back to Events List</a>
+        <h1>User Deatils</h1>
+        <a href="/users">Back to Users List</a>
         <br><br>
         <section>
-            <form action="/events/<%= event._id %>?_method=PATCH" method="post">
+            <form action="/users/<%= user._id %>?_method=PATCH" method="post">
                 <section>
-                    <label for="name">Event Name : </label>
-                    <label id="name" name="name"><%= event.name %></label>
+                    <label for="name">User Name : </label>
+                    <label id="name" name="name"><%= user.name %></label>
                 </section>
                 <section>
                     <label for="description">Description : </label>
-                    <label id="description" name="description"><%= event.description %></label>
+                    <label id="description" name="description"><%= user.description %></label>
                 </section>
                 <section>
                     <label for="address">Address : </label>
-                    <label id="address" name="address"><%= event.address %></label>
+                    <label id="address" name="address"><%= user.address %></label>
                 </section>
                 <section>
                     <label for="website">Website : </label>
-                    <label id="website" name="website"><%= event.website %></label>
+                    <label id="website" name="website"><%= user.website %></label>
                 </section>
                 <section>
                     <label for="phone">Phone : </label>
-                    <label id="phone" name="phone"><%= event.phone %></label>
+                    <label id="phone" name="phone"><%= user.phone %></label>
                 </section>
                 <section>
                     <label for="image">Image : </label>
-                    <label id="image" name="image"><%= event.image %></label>
+                    <label id="image" name="image"><%= user.image %></label>
                 </section>
                 <section>
                     <label for="priceStarts">Starts From : </label>
-                    <label id="priceStarts" name="priceStarts"><%= event.priceStarts %></label>
+                    <label id="priceStarts" name="priceStarts"><%= user.priceStarts %></label>
                 </section>
             </form>
         </section>

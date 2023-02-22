@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Events</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <h1>Update Event</h1>
+    <section>
+        <a href="/events">Back to Events List</a>
+        <a href="/events/<%= id %>/comments/new">Add Comment</a>
+        <a href="/events/<%= id %>/comments">View Comments</a>
+    </section>
+    <br><br>
+    <section>
+        <form action="/events/<%= id %>?_method=PATCH" method="post">
+            <section>
+                <label for="name">Event Name : </label>
+                <input type="text" id="name" name="name" value="<%= event.name %>" placeholder="Name"></input>
+            </section>
+            <section>
+                <label for="description">Description : </label>
+                <br>
+                <textarea id="description" name="description" cols="32" rows="4"
+                    placeholder="Description"><%= event.description %></textarea>
+            </section>
+            <section>
+                <label for="address">Address : </label>
+                <br>
+                <textarea id="address" name="address" cols="32" rows="4"
+                    placeholder="Address"><%= event.address %></textarea>
+            </section>
+            <section>
+                <label for="website">Website : </label>
+                <input type="text" id="website" name="website" value="<%= event.website %>"
+                    placeholder="Website"></input>
+            </section>
+            <section>
+                <label for="phone">Phone : </label>
+                <input type="text" id="phone" name="phone" value="<%= event.phone %>" placeholder="Phone"></input>
+            </section>
+            <section>
+                <label for="image">Image : </label>
+                <input type="text" id="image" name="image" value="<%= event.image %>" placeholder="Image"></input>
+            </section>
+            <section>
+                <label for="priceStarts">Starts From : </label>
+                <input type="text" id="priceStarts" name="priceStarts" value="<%= event.priceStarts %>"
+                    placeholder="Starts From"></input>
+            </section>
+            <button>Submit</button>
+        </form>
+    </section>
+
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <script src="" async defer></script>
+</body>
+
+</html>

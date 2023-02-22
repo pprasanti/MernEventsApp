@@ -1,7 +1,7 @@
 import express from 'express';
-import eventService from '../services/event.js';
-import Event from './../models/event.js';
-import eventRepository from '../db/mongo/repositories/event.js';
+import userService from '../services/user.js';
+import User from './../models/user.js';
+import userRepository from '../db/mongo/repositories/user.js';
 
 const router = express.Router()
 
@@ -12,14 +12,14 @@ router.use((req, res, next) => {
 })
 
 // **********************************
-// INDEX - renders multiple events
+// INDEX - renders multiple users
 // **********************************
 router.get('/', async (req, res) => {
     try {
-        const events = await eventService.getEvents({ eventRepository })
+        const users = await userService.getUsers({ userRepository })
 
-        // res.status(200).json(events)
-        res.render('events/index', { events })
+        // res.status(200).json(users)
+        res.render('user/index', { users })
     } catch (err) {
         console.log(err)
         res.status(500).send('Internal Server Error!!!')
@@ -28,14 +28,14 @@ router.get('/', async (req, res) => {
 
 
 // **********************************
-// INDEX - renders multiple events
+// INDEX - renders multiple users
 // **********************************
 router.get('/seed', async (req, res) => {
     try {
-        const events = await eventService.seedEvents({ eventRepository })
+        const users = await userService.seedUsers({ userRepository })
 
-        // res.status(200).json(events)
-        res.redirect('/events')
+        // res.status(200).json(users)
+        res.redirect('/users')
     } catch (err) {
         console.log(err)
         res.status(500).send('Internal Server Error!!!')
@@ -46,19 +46,26 @@ router.get('/seed', async (req, res) => {
 // NEW - renders a form
 // **********************************
 router.get('/new', (req, res) => {
-    res.render('events/new')
+    res.render('user/new')
 })
 
 // **********************************
-// CREATE - creates a new event
+// CREATE - creates a new user
 // **********************************
 router.post('/', async (req, res) => {
     try {
-        const event = new Event(req.body);
+        const user = new User(req.body);
+        const { street, city, state, country } = req.body;
+        user.address.push = [{
+            street: street, 
+            city: city, 
+            state: state, 
+            country: country
+        }]
 
-        const newEvent = await eventService.createEvent({ eventRepository }, event)
-        // res.json(newEvent)
-        res.redirect('/events');
+        const newUser = await userService.createUser({ userRepository }, user)
+        // res.json(newUser)
+        res.redirect('/users');
     } catch (err) {
         console.log(err)
         res.status(500).send('Internal Server Error!!!')
@@ -66,15 +73,15 @@ router.post('/', async (req, res) => {
 })
 
 // *******************************************
-// SHOW - details about one particular event
+// SHOW - details about one particular user
 // *******************************************
 router.get('/:id', async (req, res) => {
     const { id } = req.params
     try {
-        const event = await eventService.getEvent({ eventRepository }, id)
+        const user = await userService.getUser({ userRepository }, id)
 
-        // res.json(event)
-        res.render('events/show', { event })
+        // res.json(user)
+        res.render('user/show', { user })
     } catch (err) {
         console.log(err)
         res.status(500).send('Internal Server Error!!!')
@@ -82,15 +89,15 @@ router.get('/:id', async (req, res) => {
 })
 
 // *******************************************
-// EDIT - renders a form to edit an event
+// EDIT - renders a form to edit an user
 // *******************************************
 router.get('/:id/edit', async (req, res) => {
     const { id } = req.params
     try {
-        const event = await eventService.getEvent({ eventRepository }, id)
+        const user = await userService.getUser({ userRepository }, id)
 
-        // res.json(event)
-        res.render('events/edit', { id, event })
+        // res.json(user)
+        res.render('user/edit', { id, user })
     } catch (err) {
         console.log(err)
         res.status(500).send('Internal Server Error!!!')
@@ -98,18 +105,18 @@ router.get('/:id/edit', async (req, res) => {
 })
 
 // *******************************************
-// UPDATE - updates a particular event
+// UPDATE - updates a particular user
 // *******************************************
 router.patch('/:id', async (req, res) => {
     const { id } = req.params;
     //get new data from req.body
-    const event = req.body;
+    const user = req.body;
 
     try {
-        const eventUpd = await eventService.updateEvent({ eventRepository }, { id, event })
-        // res.json(eventUpd)
+        const userUpd = await userService.updateUser({ userRepository }, { id, user })
+        // res.json(userUpd)
         //redirect back to index (or wherever you want)
-        res.redirect('/events');
+        res.redirect('/users');
     } catch (err) {
         console.log(err)
         // res.status(500).send('Internal Server Error!!!')
@@ -117,17 +124,17 @@ router.patch('/:id', async (req, res) => {
 })
 
 // *******************************************
-// DELETE/DESTROY- removes a single event
+// DELETE/DESTROY- removes a single user
 // *******************************************
 router.delete('/:id', async (req, res) => {
     //get new data from req.body
     const { id } = req.params;
     try {
-        const newEvent = await eventService.deleteEvent({ eventRepository }, id)
+        const newUser = await userService.deleteUser({ userRepository }, id)
 
         //redirect back to index (or wherever you want)
-        // res.status(200).send("Event Deleted!!!")
-        res.redirect('/events');
+        // res.status(200).send("User Deleted!!!")
+        res.redirect('/users');
     } catch (err) {
         console.log(err)
         res.status(500).send('Internal Server Error!!!')
