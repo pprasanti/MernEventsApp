@@ -4,76 +4,64 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Events</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
-</head>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      a {
+        padding: 2px !important;
+      }
+    </style>
+  </head>
 
-<body>
+  <body>
     <h1>Event Deatils</h1>
     <section>
-        <a href="/events">Back to Events List</a>
-        <a href="/events/<%= event._id %>/comments/new">Add Comment</a>
-        <a href="/events/<%= event._id %>/comments">View Comments</a>
+      <a href="/events">Back to Events List</a>
+      <a href="/events/<%= event._id %>/comments/new">Add Comment</a>
+      <a href="/events/<%= event._id %>/comments">View Comments</a>
     </section>
-    <br><br>
+    <br /><br />
     <section>
-        <form action="/events/<%= event._id %>" method="post">
-            <section>
-                <label for="name">Event Name : </label>
-                <label id="name" name="name">
-                    <%= event.name %>
-                </label>
-            </section>
-            <section>
-                <label for="description">Description : </label>
-                <label id="description" name="description">
-                    <%= event.description %>
-                </label>
-            </section>
-            <section>
-                <label for="address">Address : </label>
-                <label id="address" name="address">
-                    <%= event.address %>
-                </label>
-            </section>
-            <section>
-                <label for="website">Website : </label>
-                <label id="website" name="website">
-                    <%= event.website %>
-                </label>
-            </section>
-            <section>
-                <label for="phone">Phone : </label>
-                <label id="phone" name="phone">
-                    <%= event.phone %>
-                </label>
-            </section>
-            <section>
-                <label for="image">Image : </label>
-                <label id="image" name="image">
-                    <%= event.image %>
-                </label>
-            </section>
-            <section>
-                <label for="priceStarts">Starts From : </label>
-                <label id="priceStarts" name="priceStarts">
-                    <%= event.priceStarts %>
-                </label>
-            </section>
-        </form>
+      <form action="/events/<%= event._id %>" method="post">
+        <section>
+          <label for="name">Event Name : </label>
+          <label id="name" name="name"> <%= event.name %> </label>
+        </section>
+        <section>
+          <label for="description">Description : </label>
+          <label id="description" name="description">
+            <%= event.description %>
+          </label>
+        </section>
+        <section>
+          <label for="address">Address : </label>
+          <label id="address" name="address"> <%= event.address %> </label>
+        </section>
+        <section>
+          <label for="website">Website : </label>
+          <label id="website" name="website"> <%= event.website %> </label>
+        </section>
+        <section>
+          <label for="phone">Phone : </label>
+          <label id="phone" name="phone"> <%= event.phone %> </label>
+        </section>
+        <section>
+          <label for="image">Image : </label>
+          <label id="image" name="image"> <%= event.image %> </label>
+        </section>
+        <section>
+          <label for="priceStarts">Starts From : </label>
+          <label id="priceStarts" name="priceStarts">
+            <%= event.priceStarts %>
+          </label>
+        </section>
+      </form>
     </section>
-
-    <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
 
     <script src="" async defer></script>
-</body>
-
+  </body>
 </html>

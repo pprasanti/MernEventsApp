@@ -10,10 +10,12 @@
     <title>Users</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="" />
     <style>
+      a {
+        padding: 2px !important;
+      }
       td {
-        border : 1px solid black
+        border: 1px solid black;
       }
     </style>
   </head>
@@ -21,14 +23,14 @@
     <h1>Users</h1>
     <section>
       <a href="/users/new">Add User</a>
-    </section>  
-    <br>
+    </section>
+    <br />
 
     <section>
-      <table style="border : 0.5px solid black">
+      <table style="border: 0.5px solid black">
         <thead>
           <th>
-            <tr >
+            <tr>
               <td>Name</td>
               <td>Address</td>
               <td>Email</td>
@@ -51,9 +53,9 @@
             </td>
             <td>
               <form
-                  action="/users/<%= user._id %>?_method=DELETE"
-                  method="post"
-                >
+                action="/users/<%= user._id %>?_method=DELETE"
+                method="post"
+              >
                 <button>Delete</button>
               </form>
             </td>

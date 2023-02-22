@@ -26,7 +26,8 @@ app.use('/events', eventRouter)
 app.use('/users', userRouter)
 
 app.get('/', (req, res) => {
-    res.json({ kk: "Welcome to Node JS App!!!" })
+    res.render('index')
+    // res.json({ "Welcome to Node JS App!!!" })
 })
 
 app.get('/seed', (req, res) => {

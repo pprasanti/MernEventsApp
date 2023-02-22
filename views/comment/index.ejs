@@ -10,10 +10,12 @@
     <title>Events</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="" />
     <style>
       td {
-        border : 1px solid black
+        border: 1px solid black;
+      }
+      a {
+        padding: 2px !important;
       }
     </style>
   </head>
@@ -23,14 +25,14 @@
     <section>
       <a href="/events/<%= eid %>/comments/new">Add Comment</a>
       <a href="/events">Back to Events List</a>
-    </section>  
-    <br>
+    </section>
+    <br />
 
     <section>
-      <table style="border : 0.5px solid black">
+      <table style="border: 0.5px solid black">
         <thead>
           <th>
-            <tr >
+            <tr>
               <td>Id</td>
               <td>Text</td>
               <td>Rating</td>
@@ -42,16 +44,22 @@
           <% for(let comment of comments ) { %>
           <tr>
             <td><%= comment._id %></td>
-            <td><a href="/events/<%= eid %>/comments/<%= comment._id %>"><%= comment.text %></a></td>
+            <td>
+              <a href="/events/<%= eid %>/comments/<%= comment._id %>">
+                <%= comment.text %>
+              </a>
+            </td>
             <td><%= comment.rating %></td>
             <td>
-              <a href="/events/<%= eid %>/comments/<%= comment._id %>/edit">Edit</a>
+              <a href="/events/<%= eid %>/comments/<%= comment._id %>/edit"
+                >Edit</a
+              >
             </td>
             <td>
               <form
-                  action="/events/<%= eid %>/comments/<%= comment._id %>?_method=DELETE"
-                  method="post"
-                >
+                action="/events/<%= eid %>/comments/<%= comment._id %>?_method=DELETE"
+                method="post"
+              >
                 <button>Delete</button>
               </form>
             </td>

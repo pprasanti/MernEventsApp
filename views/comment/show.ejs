@@ -4,36 +4,37 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Comments</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <h1>Comment Deatils</h1>
-        <h3>Event - <%= name %></h3>
-        <a href="/events/<%= eid %>/comments">Back to Comments List</a>
-        <br><br>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Comments</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      a {
+        padding: 2px !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Comment Deatils</h1>
+    <h3>Event - <%= name %></h3>
+    <a href="/events/<%= eid %>/comments">Back to Comments List</a>
+    <br /><br />
+    <section>
+      <form action="" method="post">
         <section>
-            <form action="" method="post">
-                <section>
-                    <label for="text">Comment : </label>
-                    <label id="text" name="text"><%= comment.text %></label>
-                </section>
-                <section>
-                    <label for="rating">Rating : </label>
-                    <label id="rating" name="rating"><%= comment.rating %></label>
-                </section>
-            </form>
+          <label for="text">Comment : </label>
+          <label id="text" name="text"> <%= comment.text %> </label>
         </section>
-      
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        
-        <script src="" async defer></script>
-    </body>
+        <section>
+          <label for="rating">Rating : </label>
+          <label id="rating" name="rating"> <%= comment.rating %> </label>
+        </section>
+      </form>
+    </section>
+
+    <script src="" async defer></script>
+  </body>
 </html>
