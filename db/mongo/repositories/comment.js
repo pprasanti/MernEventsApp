@@ -29,8 +29,8 @@ const repository = {
         return commentUpd
     },
 
-    async getComments({ eid }) {
-        const event = await Event.findById(eid, { __v: 0 })
+    async getCommentsByEventId(id) {
+        const event = await Event.findById(id, { __v: 0 })
         const comments = await event.populate('comments')
             // .then(data => data)
             // .catch(err => console.error(err))

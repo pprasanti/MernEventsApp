@@ -74,7 +74,8 @@ router.post('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     const { id } = req.params
     try {
-        const event = await eventService.getEvent({ eventRepository }, id)
+        // const event = await eventService.getEvent({ eventRepository }, id)
+        const event = await commentService.getCommentsByEventId({ commentRepository}, id)
 
         // res.json(event)
         res.render('event/show', { event })
@@ -90,10 +91,11 @@ router.get('/:id', async (req, res) => {
 router.get('/:id/edit', async (req, res) => {
     const { id } = req.params
     try {
-        const event = await eventService.getEvent({ eventRepository }, id)
+        // const event = await eventService.getEvent({ eventRepository }, id)
+        const event = await commentService.getCommentsByEventId({ commentRepository}, id)
 
         // res.json(event)
-        res.render('event/edit', { id, event })
+        res.render('event/edit', { event })
     } catch (err) {
         console.log(err)
         res.status(500).send('Internal Server Error!!!')
@@ -147,7 +149,7 @@ router.delete('/:id', async (req, res) => {
 router.get('/:eid/comments/', async (req, res) => {
     try {
         const { eid } = req.params
-        const {name, comments} = await commentService.getComments({ commentRepository}, {eid})
+        const {name, comments} = await commentService.getCommentsByEventId({ commentRepository}, eid)
 
         // res.status(200).json(comments)
         res.render('comment/index', { eid, name, comments })

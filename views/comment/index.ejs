@@ -33,7 +33,6 @@
         <thead>
           <th>
             <tr>
-              <td>Id</td>
               <td>Text</td>
               <td>Rating</td>
               <td colspan="2">Action</td>
@@ -43,7 +42,6 @@
         <tbody>
           <% for(let comment of comments ) { %>
           <tr>
-            <td><%= comment._id %></td>
             <td>
               <a href="/events/<%= eid %>/comments/<%= comment._id %>">
                 <%= comment.text %>

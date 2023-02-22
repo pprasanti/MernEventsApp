@@ -5,7 +5,7 @@ export const seedEvents = async () => {
     .then(data => console.log("Deleted all Events successfuly!!"))
     .catch(err => console.error("Failed while Deleting all."))
 
-  await Event.insertMany(users)
+  await Event.insertMany(events)
     .then(data => console.log("Seed Events successfuly!!"))
     .catch(err => console.error("Failed while running seed."))
 }

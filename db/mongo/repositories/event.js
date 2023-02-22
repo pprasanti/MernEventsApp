@@ -44,7 +44,8 @@ const repository = {
     },
 
     async deleteEvent(id) {
-        return await Event.deleteOne({ _id: id }).catch(err => console.error(err))
+        // Implement middleware to delete all relevant comments
+        return await Event.findByIdAndDelete(id).catch(err => console.error(err))
     },
 }
 

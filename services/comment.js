@@ -12,8 +12,8 @@ const commentService = {
         return await commentRepository.updateComment({ id, comment })
     },
 
-    async getComments({ commentRepository }, {eid}) {
-        return await commentRepository.getComments({eid})
+    async getCommentsByEventId({ commentRepository }, id) {
+        return await commentRepository.getCommentsByEventId(id)
     },
 
     async getComment({ commentRepository }, id) {
