@@ -1,6 +1,6 @@
 import Event from "../../../models/event.js"
 
-export const seedEvents = async () => {
+export const seedEventsDb = async () => {
   await Event.deleteMany({})
     .then(data => console.log("Deleted all Events successfuly!!"))
     .catch(err => console.error("Failed while Deleting all."))

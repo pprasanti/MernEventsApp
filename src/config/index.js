@@ -2,7 +2,7 @@ import dotenv from 'dotenv'
 
 // set config file
 export const loadConfig = () => {
-    if ('DEV' == process.argv[2]) {
+    if ('dev' == process.env.NODE_ENV) {
         dotenv.config({ path: '.env.dev' })
     } else {
         dotenv.config()

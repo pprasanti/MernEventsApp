@@ -1,6 +1,6 @@
 import User from "../../../models/user.js"
 
-export const seedUsers = async () => {
+export const seedUsersDb = async () => {
   await User.deleteMany({})
     .then(data => console.log("Deleted all Events successfuly!!"))
     .catch(err => console.error("Failed while Deleting all."))

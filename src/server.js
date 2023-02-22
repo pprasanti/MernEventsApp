@@ -9,6 +9,13 @@ import { seedDB } from './db/mongo/seeds/index.js';
 // Inject DB Provider type & connect to DB
 import { loadConfig } from './config/index.js';
 import { connectDB } from './db/connection.js';
+/*
+import morgan from 'morgan';
+import cors from 'cors';
+
+app.use(morgan('tiny'));
+app.use(cors());
+*/
 
 const app = new express();
 
@@ -34,6 +41,6 @@ app.get('/seed', (req, res) => {
     seedDB()
 })
 
-app.listen(3000, () => {
-    console.log('Listen to port 3000')
+app.listen(process.env.PORT, () => {
+    console.log(`Listen to port ${process.env.PORT}`)
 })
