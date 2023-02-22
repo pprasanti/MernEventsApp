@@ -10,7 +10,7 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["node", "src/server.js"]
+CMD ["node", "src/server.js", "Development", "Kebernetes"]
 
 # # Setup Minikube
 # brew install minikube
@@ -22,5 +22,6 @@ CMD ["node", "src/server.js"]
 # docker buildx build --platform linux/amd64,linux/arm64 -t prasanti85/merneventsserver . --push
 # kubectl create deployment merneventsserver --image=prasanti85/merneventsserver
 # kubectl expose deployment merneventsserver --type=LoadBalancer --port=3000
-
 # minikube service merneventsserver
+# kubectl delete deployment merneventsserver && kubectl delete service merneventsserver
+

@@ -1,4 +1,5 @@
 import {
+    seedUsers,
     createUser,
     updateUser,
     getUsers,
@@ -7,6 +8,7 @@ import {
 } from './../mongo/modules/user.js'
 
 const userDb = {
+    seedUsers,
     createUser,
     updateUser,
     getUsers,

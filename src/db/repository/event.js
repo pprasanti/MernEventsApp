@@ -1,4 +1,5 @@
 import {
+    seedEvents,
     createEvent,
     updateEvent,
     getEvents,
@@ -7,6 +8,7 @@ import {
 } from './../mongo/modules/event.js'
 
 const eventDb = {
+    seedEvents,
     createEvent,
     updateEvent,
     getEvents,
