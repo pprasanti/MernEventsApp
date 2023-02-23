@@ -1,29 +1,6 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html lang="en">
+<% layout('layout/template') %>
 
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Events</title>
-  <meta name="description" content="" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    td {
-      border: 1px solid black;
-    }
-
-    a {
-      padding: 2px !important;
-    }
-  </style>
-</head>
-
-<body>
-  <h1>Event Deatils</h1>
+  <h2>Event Deatils</h2>
   <section>
     <a href="/events">Back to Events List</a>
     <a href="/events/<%= event._id %>/comments/new">Add Comment</a>
@@ -38,6 +15,7 @@
           <%= event.name %>
         </label>
       </section>
+      <img class="img-fluid" src="<%= event.img %>" alt="" />
       <section>
         <label for="description">Description : </label>
         <label id="description" name="description">
@@ -117,8 +95,3 @@
       </tbody>
     </table>
   </section>
-
-  <script src="" async defer></script>
-</body>
-
-</html>

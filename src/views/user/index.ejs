@@ -1,89 +1,52 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Users</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-      a {
-        padding: 2px !important;
-      }
-      td {
-        border: 1px solid black;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Users</h1>
-    <section>
-      <a href="/users/new">Add User</a>
-    </section>
-    <br />
+<% layout('layout/template') %>
+  <h2>Users</h2>
+  <section>
+    <a href="/users/new">Add User</a>
+  </section>
+  <br />
 
-    <section>
-      <table style="border: 0.5px solid black">
-        <thead>
-          <th>
-            <tr>
-              <td>Name</td>
-              <td>Address</td>
-              <td>Email</td>
-              <td>Phone</td>
-              <td>Image</td>
-              <td colspan="2">Action</td>
-            </tr>
-          </th>
-        </thead>
-        <tbody>
-          <% for(let user of users ) { %>
+  <section>
+    <table style="border: 0.5px solid black">
+      <thead>
+        <th>
           <tr>
-            <td><a href="/users/<%= user._id %>"><%= user.fullName %></a></td>
-            <td><%= user.address %></td>
-            <td><%= user.email %></td>
-            <td><%= user.phone %></td>
-            <td><%= user.img %></td>
+            <td>Name</td>
+            <td>Address</td>
+            <td>Email</td>
+            <td>Phone</td>
+            <td>Image</td>
+            <td colspan="2">Action</td>
+          </tr>
+        </th>
+      </thead>
+      <tbody>
+        <% for(let user of users ) { %>
+          <tr>
+            <td><a href="/users/<%= user._id %>">
+                <%= user.fullName %>
+              </a></td>
+            <td>
+              <%= user.address %>
+            </td>
+            <td>
+              <%= user.email %>
+            </td>
+            <td>
+              <%= user.phone %>
+            </td>
+            <td>
+              <%= user.img %>
+            </td>
             <td>
               <a href="/users/<%= user._id %>/edit">Edit</a>
             </td>
             <td>
-              <form
-                action="/users/<%= user._id %>?_method=DELETE"
-                method="post"
-              >
+              <form action="/users/<%= user._id %>?_method=DELETE" method="post">
                 <button>Delete</button>
               </form>
             </td>
           </tr>
           <% } %>
-        </tbody>
-      </table>
-    </section>
-
-    <!-- <ul>
-      <li><b> ID - NAME - ADDRESSS </b></li>
-
-      <% for(let user of users ) { %>
-      <section>
-        <div class="row">
-          <li>
-            <%= user.id %> - <%= user.name %> - <%= user.address %>
-            <a href="/users/<%= user.id %>">View</a>
-            <a href="/users/<%= user.id %>/edit">Edit</a>
-            <form action="/users/<%= user.id %>?_method=DELETE" method="post">
-              <button>Delete</button>
-            </form>
-          </li>
-        </div>
-      </section>
-      <% } %>
-    </ul> -->
-
-    <script src="" async defer></script>
-  </body>
-</html>
+      </tbody>
+    </table>
+  </section>

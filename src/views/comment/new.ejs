@@ -1,25 +1,8 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Comments</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        a {
-            padding: 2px !important;
-        }
-    </style>
-</head>
+<% layout('layout/template') %>
 
-<body>
-    <h1>Create New Comment</h1>
-    <h3>Event - <%= name %></h3>
+    <h2>Create New Comment</h2>
+    <h3>Event - <%= name %>
+    </h3>
     <a href="/events/<%= eid %>/comments">Back to Comments List</a>
     <br><br>
     <section>
@@ -36,11 +19,3 @@
             <button>Submit</button>
         </form>
     </section>
-
-    <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-    <script src="" async defer></script>
-</body>
-</html>

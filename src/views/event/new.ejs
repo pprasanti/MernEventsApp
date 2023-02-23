@@ -1,65 +1,47 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Events</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            a {
-                padding: 2px !important;
-            }
-        </style>
-        </head>
-    <body>
-        <h1>Create New Event</h1>
-        <a href="/events">Back to Events List</a>
-        <br><br>
-        <section>
-            <form action="/events" method="post">
-                <section>
-                    <label for="name">Event Name : </label>
-                    <input type="text" id="name" name="name" placeholder="Name"></input>
-                </section>
-                <section>
-                    <label for="description">Description : </label>
-                    <br>
-                    <textarea id="description" name="description" cols="32" rows="4" placeholder="Description"></textarea>
-                </section>
-                <section>
-                    <label for="address">Address : </label>
-                    <br>
-                    <textarea id="address" name="address" cols="32" rows="4" placeholder="Address"></textarea>
-                </section>
-                <section>
-                    <label for="website">Website : </label>
-                    <input type="text" id="website" name="website" placeholder="Website"></input>
-                </section>
-                <section>
-                    <label for="phone">Phone : </label>
-                    <input type="text" id="phone" name="phone" placeholder="Phone"></input>
-                </section>
-                <section>
-                    <label for="image">Image : </label>
-                    <input type="text" id="image" name="image" placeholder="Image"></input>
-                </section>
-                <section>
-                    <label for="priceStarts">Starts From : </label>
-                    <input type="text" id="priceStarts" name="priceStarts" placeholder="Starts From"></input>
-                </section>
-                <button>Submit</button>
-            </form>
-        </section>
+<% layout('layout/template') %>
 
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        
-        <script src="" async defer></script>
-    </body>
-</html>
+    <h2>Create New Event</h2>
+    <a href="/events">Back to Events List</a>
+    <br><br>
+    <section>
+        <form action="/events" method="post">
+            <div class="mb-3">
+                <label for="name">Event Name : </label>
+                <input type="text" id="name" name="name" placeholder="Name"></input>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="description">Description : </label>
+                <br>
+                <textarea class="form-control" id="description" name="description" cols="32" rows="2"
+                    placeholder="Description"></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="address">Address : </label>
+                <br>
+                <textarea class="form-control" id="address" name="address" cols="32" rows="2"
+                    placeholder="Address"></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="website">Website : </label>
+                <input class="form-control" type="text" id="website" name="website" placeholder="Website"></input>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="phone">Phone : </label>
+                <input class="form-control" type="text" id="phone" name="phone" placeholder="Phone"></input>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="image">Image : </label>
+                <input class="form-control" type="text" id="image" name="image" placeholder="Image"></input>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="priceStarts">Starts From : </label>
+                <input class="form-control" type="text" id="priceStarts" name="priceStarts"
+                    placeholder="Starts From"></input>
+            </div>
+            <br>
+            <div>
+                <button>Submit</button>
+            </div>
+
+        </form>
+    </section>

@@ -1,72 +1,46 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Events</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-      td {
-        border: 1px solid black;
-      }
-      a {
-        padding: 2px !important;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Comments</h1>
-    <h3>Event - <%= name %></h3>
-    <section>
-      <a href="/events/<%= eid %>/comments/new">Add Comment</a>
-      <a href="/events">Back to Events List</a>
-    </section>
-    <br />
+<% layout('layout/template') %>
 
-    <section>
-      <table style="border: 0.5px solid black">
-        <thead>
-          <th>
-            <tr>
-              <td>Text</td>
-              <td>Rating</td>
-              <td colspan="2">Action</td>
-            </tr>
-          </th>
-        </thead>
-        <tbody>
-          <% for(let comment of comments ) { %>
+  <h2>Comments</h2>
+  <h3>Event - <%= name %>
+  </h3>
+  <section>
+    <a href="/events/<%= eid %>/comments/new">Add Comment</a>
+    <a href="/events">Back to Events List</a>
+  </section>
+  <br />
+
+  <section>
+    <table style="border: 0.5px solid black">
+      <thead>
+        <th>
+          <tr>
+            <td>Text</td>
+            <td>Rating</td>
+            <td colspan="2">Action</td>
+          </tr>
+        </th>
+      </thead>
+      <tbody>
+        <% for(let comment of comments ) { %>
           <tr>
             <td>
               <a href="/events/<%= eid %>/comments/<%= comment._id %>">
                 <%= comment.text %>
               </a>
             </td>
-            <td><%= comment.rating %></td>
             <td>
-              <a href="/events/<%= eid %>/comments/<%= comment._id %>/edit"
-                >Edit</a
-              >
+              <%= comment.rating %>
             </td>
             <td>
-              <form
-                action="/events/<%= eid %>/comments/<%= comment._id %>?_method=DELETE"
-                method="post"
-              >
+              <a href="/events/<%= eid %>/comments/<%= comment._id %>/edit">Edit</a>
+            </td>
+            <td>
+              <form action="/events/<%= eid %>/comments/<%= comment._id %>?_method=DELETE" method="post">
                 <button>Delete</button>
               </form>
             </td>
           </tr>
           <% } %>
-        </tbody>
-      </table>
-    </section>
-
-    <script src="" async defer></script>
-  </body>
-</html>
+      </tbody>
+    </table>
+  </section>

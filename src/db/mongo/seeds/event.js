@@ -18,7 +18,7 @@ export const events =
       address: 'Address 1',
       website: 'www.xyz1.com',
       priceStarts: 100000,
-      img: '',
+      img: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg',
       phone: 9886731992,
       comments: []
     },
@@ -28,7 +28,7 @@ export const events =
       address: 'Address 4',
       website: 'www.xyz4.com',
       priceStarts: 100000,
-      img: '',
+      img: 'https://cdn.pixabay.com/photo/2013/10/02/23/03/mountains-190055_1280.jpg',
       phone: 9886731992,
       comments: []
     },
@@ -38,7 +38,7 @@ export const events =
       address: 'Address 5',
       website: 'www.xyz5.com',
       priceStarts: 100000,
-      img: '',
+      img: 'https://cdn.pixabay.com/photo/2014/04/14/20/11/pink-324175_1280.jpg',
       phone: 9886731992,
       comments: []
     },
@@ -48,7 +48,7 @@ export const events =
       address: 'Address 6',
       website: 'www.xyz6.com',
       priceStarts: 100000,
-      img: '',
+      img: 'https://cdn.pixabay.com/photo/2013/11/28/10/03/river-219972_1280.jpg',
       phone: 9886731992,
       comments: []
     },
@@ -58,7 +58,7 @@ export const events =
       address: 'Address 3',
       website: 'www.xyz3.com',
       priceStarts: 100000,
-      img: '',
+      img: 'https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072821_1280.jpg',
       phone: 9886731992,
       comments: []
     },
@@ -68,7 +68,7 @@ export const events =
       address: 'Address 8',
       website: 'www.xyz8.com',
       priceStarts: 100000,
-      img: '',
+      img: 'https://cdn.pixabay.com/photo/2015/07/31/06/50/forest-868715_1280.jpg',
       phone: 9886731992,
       comments: []
     },
@@ -78,7 +78,7 @@ export const events =
       address: 'Address 2',
       website: 'www.xyz2.com',
       priceStarts: 100000,
-      img: '',
+      img: 'https://cdn.pixabay.com/photo/2015/06/19/21/24/avenue-815297_1280.jpg',
       phone: 9886731992,
       comments: []
     },
@@ -88,7 +88,7 @@ export const events =
       address: 'Address 10',
       website: 'www.xyz10.com',
       priceStarts: 100000,
-      img: '',
+      img: 'https://cdn.pixabay.com/photo/2014/12/16/22/25/woman-570883_1280.jpg',
       phone: 9886731992,
       comments: []
     },
@@ -98,7 +98,7 @@ export const events =
       address: 'Address 7',
       website: 'www.xyz7.com',
       priceStarts: 100000,
-      img: '',
+      img: 'https://cdn.pixabay.com/photo/2014/04/14/20/11/pink-324175_1280.jpg',
       phone: 9886731992,
       comments: []
     },
@@ -108,7 +108,7 @@ export const events =
       address: 'Address 9',
       website: 'www.xyz9.com',
       priceStarts: 100000,
-      img: '',
+      img: 'https://cdn.pixabay.com/photo/2013/11/28/10/36/road-220058_1280.jpg',
       phone: 9886731992,
       comments: []
     }
