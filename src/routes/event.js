@@ -1,10 +1,10 @@
 import express from 'express';
-import eventService from '../services/event.js';
+import eventService from '../controller/event.js';
 import Event from './../models/event.js';
-import eventRepository from '../db/repository/event.js';
+import eventRepository from '../db/injectable/event.js';
 import Comment from '../models/comment.js';
-import commentService from '../services/comment.js';
-import commentRepository from '../db/repository/comment.js';
+import commentService from '../controller/comment.js';
+import commentRepository from '../db/injectable/comment.js';
 import wrapAsynch from '../utils/AsynchErrorHandle.js';
 
 const router = express.Router()

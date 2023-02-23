@@ -1,7 +1,7 @@
 import express from 'express';
-import userService from '../services/user.js';
+import userService from '../controller/user.js';
 import User from './../models/user.js';
-import userRepository from '../db/repository/user.js';
+import userRepository from '../db/injectable/user.js';
 import wrapAsynch from '../utils/AsynchErrorHandle.js';
 
 const router = express.Router()
