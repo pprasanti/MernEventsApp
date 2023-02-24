@@ -1,12 +1,10 @@
 <% layout('layout/template') %>
 
-    <h2>Create New Comment</h2>
-    <h3>Event - <%= name %>
-    </h3>
-    <a href="/events/<%= eid %>/comments">Back to Comments List</a>
-    <br><br>
+    <h2>Add Comment</h2>
+    <h4>Event Name - <%= name %>
+    </h4>
     <section>
-        <form action="/events/<%= eid %>/comments" method="post">
+        <form action="/events/comments/<%= eid %>" method="post">
             <section>
                 <label for="text">Comment : </label>
                 <br>
@@ -16,6 +14,8 @@
                 <label for="rating">Rating : </label>
                 <input type="text" id="rating" name="rating" placeholder="Rating"></input>
             </section>
-            <button>Submit</button>
+            <br>
+            <button class="btn btn-success">Submit</button>
+            <a class="btn btn-dark" href="/events/<%= eid %>">Back</a>
         </form>
     </section>

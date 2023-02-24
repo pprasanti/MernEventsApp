@@ -3,10 +3,9 @@
     <h2>Update Comment</h2>
     <h3>Event - <%= name %>
     </h3>
-    <a href="/events/<%= eid %>/comments">Back to Comments List</a>
     <br><br>
     <section>
-        <form action="/events/<%= eid %>/comments/<%= id %>?_method=PATCH" method="post">
+        <form action="/events/comments/<%= eid %>/<%= id %>?_method=PATCH" method="post">
             <section>
                 <label for="text">Comment : </label>
                 <br>
@@ -16,6 +15,9 @@
                 <label for="rating">Rating : </label>
                 <input type="text" id="rating" name="rating" value="<%= comment.rating %>" placeholder="Rating"></input>
             </section>
-            <button>Submit</button>
+            <br />
+            <button class="btn btn-success">Update</button>
+            <a class="btn btn-dark" href="/events/<%= eid %>">Back</a>
         </form>
+
     </section>

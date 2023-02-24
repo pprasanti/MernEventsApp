@@ -4,9 +4,10 @@ import {
     getCommentsByEventId,
     getCommentById,
     deleteComment
-} from './../mongo/modules/comment.js' // Inject incase db is changed
+} from './../db/mongo/repositories/comment.js' // Inject incase db is changed
 
-const commentDb = {
+
+const commentService  = {
     createComment,
     updateComment,
     getCommentsByEventId,
@@ -14,6 +15,6 @@ const commentDb = {
     deleteComment
 }
 
-export default  commentDb
+export default  commentService
 
 

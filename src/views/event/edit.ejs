@@ -1,12 +1,6 @@
 <% layout('layout/template') %>
 
-    <h2>Update Event</h2>
-    <section>
-        <a href="/events">Back to Events List</a>
-        <a href="/events/<%= event._id %>/comments/new">Add Comment</a>
-        <a href="/events/<%= event._id %>/comments">View Comments</a>
-    </section>
-    <br><br>
+    <h3>Update Event</h3>
     <section>
         <form action="/events/<%= event._id %>?_method=PATCH" method="post">
             <div class="mb-3">
@@ -48,17 +42,23 @@
             </div>
             <br>
             <div>
-                <button>Update</button>
+                <button class="btn btn-success">Update</button>
             </div>
         </form>
         <br>
+        <br>
         <form action="/events/<%= event._id %>?_method=DELETE" method="post">
-            <button>Delete</button>
+            <button class="btn btn-dark">Delete</button>
+            <a class="btn btn-dark" href="/events/<%= event._eid %>">Back</a>
         </form>
     </section>
     <br />
-    <br />
     <h3>Comments</h3>
+    <section>
+        <a class="btn btn-link" href="/events/comments/<%= event._id %>/new">Add Comment</a>
+        <a class="btn btn-link" href="/events/comments/<%= event._id %>">View Comments</a>
+    </section>
+    <br>
     <section>
         <table style="border: 0.5px solid black">
             <thead>
@@ -74,7 +74,7 @@
                 <% for(let comment of event.comments ) { %>
                     <tr>
                         <td>
-                            <a href="/events/<%= event._id %>/comments/<%= comment._id %>">
+                            <a href="/events/comments/<%= event._id %>/<%= comment._id %>">
                                 <%= comment.text %>
                             </a>
                         </td>
@@ -82,13 +82,13 @@
                             <%= comment.rating %>
                         </td>
                         <td>
-                            <a href="/events/<%= event._id %>/comments/<%= comment._id %>/edit">Edit</a>
+                            <a href="/events/comments/<%= event._id %>/<%= comment._id %>/edit">Edit</a>
                         </td>
                         <td>
                             <section>
-                                <form action="/events/<%= event._id %>/comments/<%= comment._id %>?_method=DELETE"
+                                <form action="/events/comments/<%= event._id %>/<%= comment._id %>?_method=DELETE"
                                     method="post">
-                                    <button>Delete</button>
+                                    <button class="btn btn-link">Delete</button>
                                 </form>
                             </section>
                         </td>

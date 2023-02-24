@@ -4,8 +4,8 @@
   <h3>Event - <%= name %>
   </h3>
   <section>
-    <a href="/events/<%= eid %>/comments/new">Add Comment</a>
-    <a href="/events">Back to Events List</a>
+    <a href="/events/comments/<%= eid %>/new">Add Comment</a>
+    <a href="/events">Back to Events</a>
   </section>
   <br />
 
@@ -24,7 +24,7 @@
         <% for(let comment of comments ) { %>
           <tr>
             <td>
-              <a href="/events/<%= eid %>/comments/<%= comment._id %>">
+              <a href="/events/comments/<%= eid %>/<%= comment._id %>">
                 <%= comment.text %>
               </a>
             </td>
@@ -32,10 +32,10 @@
               <%= comment.rating %>
             </td>
             <td>
-              <a href="/events/<%= eid %>/comments/<%= comment._id %>/edit">Edit</a>
+              <a href="/events/comments/<%= eid %>/<%= comment._id %>/edit">Edit</a>
             </td>
             <td>
-              <form action="/events/<%= eid %>/comments/<%= comment._id %>?_method=DELETE" method="post">
+              <form action="/events/comments/<%= eid %>/<%= comment._id %>?_method=DELETE" method="post">
                 <button>Delete</button>
               </form>
             </td>

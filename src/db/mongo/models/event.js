@@ -57,23 +57,24 @@ eventSchema.virtual("fullName")
         return `${this.name} , DESC - ${this.description}`
     })
 
-// Middlewares
+// Middleware
 eventSchema.post('findOneAndDelete', async function (event) {
-    console.log("Post Delete Middleware!!")
+    console.log("Path - db/mongo/models - Post Delete Middleware to delete all relevant data")
 
     // Delete all comments belongs to the Event
     if (event.comments.length > 0) {
         await Comment.deleteMany({ _id: { $in: event.comments } })
-        .catch(err => console.error(err))
+            .catch(err => console.error(err))
     }
 })
 
 eventSchema.pre('save', async function () {
-    console.log("Pre Save!!")
+    console.log("Pre Save Middleware!!")
 })
 
 eventSchema.post('save', async function () {
-    console.log("Post Save!!")
+    console.log("Post Save Middleware!!")
+    console.log("Path - db/mongo/models - Post Save Middleware to process/save all relevant data")
 })
 
 const Event = mongoose.model('Event', eventSchema);

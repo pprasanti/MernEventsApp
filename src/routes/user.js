@@ -1,8 +1,8 @@
 import express from 'express';
-import userService from '../controller/user.js';
-import User from './../models/user.js';
-import userRepository from '../db/injectable/user.js';
-import wrapAsynch from '../utils/AsynchErrorHandle.js';
+import userController from '../controllers/user.js';
+import User from '../db/mongo/models/user.js';
+import userService from '../services/user.js';
+import { wrapAsyncErrors } from '../utils/AsyncErrorHandle.js';
 
 const router = express.Router()
 
@@ -13,104 +13,44 @@ router.use((req, res, next) => {
 })
 
 // **********************************
-// INDEX - renders multiple users
+// INDEX - Seed users
 // **********************************
-router.get('/', wrapAsynch(async (req, res) => {
-    const users = await userService.getUsers({ userRepository })
-
-    // res.status(200).json(users)
-    res.render('user/index', { users })
-})
-)
-
-// **********************************
-// INDEX - renders multiple users
-// **********************************
-router.get('/seed', wrapAsynch(async (req, res) => {
-    const users = await userService.seedUsers({ userRepository })
-
-    // res.status(200).json(users)
-    res.redirect('/users')
-})
-)
-
-// **********************************
-// NEW - renders a form
-// **********************************
-router.get('/new', (req, res) => {
-    res.render('user/new')
-})
+router.get('/seed', wrapAsyncErrors(userController.seedUsers))
 
 // **********************************
 // CREATE - creates a new user
 // **********************************
-router.post('/', wrapAsynch(async (req, res) => {
-    const user = new User(req.body);
-    const { street, city, state, country } = req.body;
-    user.address.push = [{
-        street: street,
-        city: city,
-        state: state,
-        country: country
-    }]
+router.post('/', wrapAsyncErrors(userController.createUser))
 
-    const newUser = await userService.createUser({ userRepository }, user)
-    // res.json(newUser)
-    res.redirect('/users');
-})
-)
-
-// *******************************************
-// SHOW - details about one particular user
-// *******************************************
-router.get('/:id', wrapAsynch(async (req, res) => {
-    const { id } = req.params
-    const user = await userService.getUser({ userRepository }, id)
-
-    // res.json(user)
-    res.render('user/show', { user })
-})
-)
-
-// *******************************************
-// EDIT - renders a form to edit an user
-// *******************************************
-router.get('/:id/edit', wrapAsynch(async (req, res) => {
-    const { id } = req.params
-    const user = await userService.getUser({ userRepository }, id)
-
-    // res.json(user)
-    res.render('user/edit', { id, user })
-})
-)
+// **********************************
+// NEW - renders a form
+// **********************************
+router.get('/new', wrapAsyncErrors(userController.newUser))
 
 // *******************************************
 // UPDATE - updates a particular user
 // *******************************************
-router.patch('/:id', wrapAsynch(async (req, res) => {
-    const { id } = req.params;
-    //get new data from req.body
-    const user = req.body;
+router.patch('/:id', wrapAsyncErrors(userController.updateUser))
 
-    const userUpd = await userService.updateUser({ userRepository }, { id, user })
-    // res.json(userUpd)
-    //redirect back to index (or wherever you want)
-    res.redirect('/users');
-})
-)
+// **********************************
+// INDEX - renders multiple users
+// **********************************
+router.get('/', wrapAsyncErrors(userController.getUsers))
+
+// *******************************************
+// SHOW - details about one particular user
+// *******************************************
+router.get('/:id', wrapAsyncErrors(userController.showUser))
+
+// *******************************************
+// EDIT - renders a form to edit an user
+// *******************************************
+router.get('/:id/edit', wrapAsyncErrors(userController.editUser))
 
 // *******************************************
 // DELETE/DESTROY- removes a single user
 // *******************************************
-router.delete('/:id', wrapAsynch(async (req, res) => {
-    //get new data from req.body
-    const { id } = req.params;
-    const newUser = await userService.deleteUser({ userRepository }, id)
+router.delete('/:id', wrapAsyncErrors(userController.deleteUser))
 
-    //redirect back to index (or wherever you want)
-    // res.status(200).send("User Deleted!!!")
-    res.redirect('/users');
-})
-)
 
 export default router

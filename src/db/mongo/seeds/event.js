@@ -1,12 +1,12 @@
-import Event from "../../../models/event.js"
+import Event from "../../../db/mongo/models/event.js"
 
 export const seedEventsDb = async () => {
   await Event.deleteMany({})
-    .then(data => console.log("Deleted all Events successfuly!!"))
+    .then(data => console.log("Deleted all Events successfully!!"))
     .catch(err => console.error("Failed while Deleting all."))
 
   await Event.insertMany(events)
-    .then(data => console.log("Seed Events successfuly!!"))
+    .then(data => console.log("Seed Events successfully!!"))
     .catch(err => console.error("Failed while running seed."))
 }
 

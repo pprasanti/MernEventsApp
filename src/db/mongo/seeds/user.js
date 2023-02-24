@@ -1,12 +1,12 @@
-import User from "../../../models/user.js"
+import User from "../../../db/mongo/models/user.js"
 
 export const seedUsersDb = async () => {
   await User.deleteMany({})
-    .then(data => console.log("Deleted all Events successfuly!!"))
+    .then(data => console.log("Deleted all Users successfully!!"))
     .catch(err => console.error("Failed while Deleting all."))
 
   await User.insertMany(users)
-    .then(data => console.log("Seed Events successfuly!!"))
+    .then(data => console.log("Seed Events successfully!!"))
     .catch(err => console.error("Failed while running seed."))
 }
 

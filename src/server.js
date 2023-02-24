@@ -3,6 +3,7 @@ import path from 'path'
 import { fileURLToPath, pathToFileURL } from 'url';
 import methodOverride from 'method-override'
 import eventRouter from './routes/event.js'
+import commentRouter from './routes/comment.js'
 import userRouter from './routes/user.js'
 import { seedDB } from './db/mongo/seeds/index.js';
 import ejsMate from 'ejs-mate'
@@ -33,6 +34,7 @@ console.log("Path : server.js");
 
 // app.use(morgan('tiny'))
 app.use((req, res, next) => {
+    console.log(`Method : ${req.method}`);
     req.user = 'Prasanti'
     req.query = { password: 123456 }
 
@@ -51,6 +53,7 @@ const authUser = (req, res, next) => {
 }
 
 app.use('/events', authUser, eventRouter)
+app.use('/events/comments', authUser, commentRouter)
 app.use('/users', authUser, userRouter)
 
 app.get('/', (req, res) => {
@@ -58,12 +61,13 @@ app.get('/', (req, res) => {
     // res.json({ msg: `${req.user} Welcome to Node JS App!!!` })
 })
 
-app.get('/seed', authUser, (req, res) => {
-    seedDB()
+app.get('/seed', authUser, async (req, res) => {
+    await seedDB()
+    res.render('index')
 })
 
 app.use((req, res, next) => {
-    res.status(400).send("NOT FOUND")
+    res.status(400).json({ "message": "Data not found" })
 
 })
 

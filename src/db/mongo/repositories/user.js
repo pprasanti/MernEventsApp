@@ -1,4 +1,4 @@
-import User from '../../../models/user.js'
+import User from '../../../db/mongo/models/user.js'
 import { seedUsersDb } from '../seeds/user.js';
 
 // Seed Users
@@ -7,8 +7,8 @@ export async function seedUsers() {
 }
 
 // Add a new User
-export async function createUser(user) {
-    // Single insert
+export async function createUser(userDTO) {
+    const user = new Comment(userDTO)
     return await user.save()
         .then(data => {
             data.fullName = data.fullName
@@ -16,16 +16,15 @@ export async function createUser(user) {
 }
 
 // Update User
-export async function updateUser(
-    { id, user }
-) {
-    return await User.findByIdAndUpdate(id, user, { new: true, runValidators: true })
+export async function updateUser(id, userDTO) {
+    return await User.findByIdAndUpdate(id, userDTO, { new: true, runValidators: true })
 }
 
 // Add Address of the User
 export async function addAddress(
-    { id, user }
+    { id, userDTO }
 ) {
+    const user = new Comment(userDTO)
     const userUpd = await User.findById(id)
     userUpd.address.push(
         user.address
