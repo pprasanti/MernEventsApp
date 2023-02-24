@@ -6,7 +6,6 @@ import eventRouter from './routes/event.js'
 import commentRouter from './routes/comment.js'
 import userRouter from './routes/user.js'
 import { seedDB } from './db/mongo/seeds/index.js';
-import authMiddleware from './middleware/firebaseMiddleware.js'
 import ejsMate from 'ejs-mate'
 
 // Inject DB Provider type & connect to DB
