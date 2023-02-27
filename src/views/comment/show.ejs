@@ -1,23 +1,17 @@
 <% layout('layout/template') %>
 
-  <h2>Comment Deatils</h2>
-  <h3>Event - <%= name %>
-  </h3>
-  <a href="/events/<%= eid %>">Back</a>
-  <br /><br />
-  <section>
-    <form action="" method="post">
-      <section>
-        <label for="text">Comment : </label>
-        <label id="text" name="text">
-          <%= comment.text %>
-        </label>
-      </section>
-      <section>
-        <label for="rating">Rating : </label>
-        <label id="rating" name="rating">
-          <%= comment.rating %>
-        </label>
-      </section>
-    </form>
-  </section>
+<!-- Not Used Anymore -->
+<a href="/events/<%= eid %>">Back</a>
+<br /><br />
+<section>
+  <form action="" method="post">
+    <section>
+      <label for="text">Comment : </label>
+      <label id="text" name="text"> <%= comment.text %> </label>
+    </section>
+    <section>
+      <label for="rating">Rating : </label>
+      <label id="rating" name="rating"> <%= comment.rating %> </label>
+    </section>
+  </form>
+</section>

@@ -1,7 +1,6 @@
 <% layout('layout/template') %>
-
     <h3>Update Event</h3>
-    <section>
+    <section class="col-md-6">
         <form action="/events/<%= event._id %>?_method=PATCH" method="post" novalidate class="validated-form">
             <div class="mb-3">
                 <label class="form-label" for="name">Event Name : </label>
@@ -63,49 +62,3 @@
     </section>
     <br />
     <%- include('../comment/new') %>
-  <%- include('../comment/index') %>
-
-    <!-- <h3>Comments</h3>
-    <section>
-        <a class="btn btn-link" href="/events/comments/<%= event._id %>/new">Add Comment</a>
-        <a class="btn btn-link" href="/events/comments/<%= event._id %>">View Comments</a>
-    </section>
-    <br>
-    <section>
-        <table style="border: 0.5px solid black">
-            <thead>
-                <th>
-                    <tr>
-                        <td>Text</td>
-                        <td>Rating</td>
-                        <td colspan="2">Action</td>
-                    </tr>
-                </th>
-            </thead>
-            <tbody>
-                <% for(let comment of event.comments ) { %>
-                    <tr>
-                        <td>
-                            <a href="/events/comments/<%= event._id %>/<%= comment._id %>">
-                                <%= comment.text %>
-                            </a>
-                        </td>
-                        <td>
-                            <%= comment.rating %>
-                        </td>
-                        <td>
-                            <a href="/events/comments/<%= event._id %>/<%= comment._id %>/edit">Edit</a>
-                        </td>
-                        <td>
-                            <section>
-                                <form action="/events/comments/<%= event._id %>/<%= comment._id %>?_method=DELETE"
-                                    method="post">
-                                    <button class="btn btn-link">Delete</button>
-                                </form>
-                            </section>
-                        </td>
-                    </tr>
-                    <% } %>
-            </tbody>
-        </table>
-    </section> -->

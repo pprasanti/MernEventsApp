@@ -1,108 +1,57 @@
 <!-- <% layout('layout/template') %> -->
 
-  <h2>Event Details</h2>
-  <section>
-    <a href="/events">Back to Events</a>
-  </section>
-  <br /><br />
-  <div class="card" mb-3>
-    <div class="row">
-      <div class="col-md-6" mb-3>
-        <img class="img-fluid" src="<%= event.img %>" alt="" />
-      </div>
-      <div class="col-md-6" mb-3>
-        <div class="card-body">
-          <h5 class="card-title">
-            <a href="/events/<%= event._id %>">
-              <label for="name">Event Name : </label>
-              <label id="name" name="name">
-                <%= event.name %>
-              </label>
-            </a>
-          </h5>
-          <div class="card-text">
-            <label for="description">Description : </label>
-            <label id="description" name="description">
-              <%= event.description %>
-            </label>
-          </div>
-          <div class="card-text">
-            <label for="website">Website : </label>
-            <label id="website" name="website">
-              <%= event.website %>
-            </label>
-          </div>
-          <div class="card-text">
-            <label for="address">Address : </label>
-            <label id="address" name="address">
-              <%= event.address %>
-            </label>
-          </div>
-          <div class="card-text">
-            <label for="phone">Phone : </label>
-            <label id="phone" name="phone">
-              <%= event.phone %>
-            </label>
-          </div>
-          <div class="card-text">
-            <label for="priceStarts">Starts From : </label>
-            <label id="priceStarts" name="priceStarts">
-              <%= event.priceStarts %>
-            </label>
-          </div>
-          <section>
-            <form action="/events/<%= event._id %>?_method=DELETE" method="post">
-              <a href="/events/<%= event._id %>/edit">Edit</a>
-              <button class="btn btn-link">Delete</button>
-            </form>
-          </section>
+<h2>Event Details</h2>
+<section>
+  <a href="/events">Back to Events</a>
+</section>
+<br /><br />
+<div class="card" mb-3>
+  <div class="row">
+    <div class="col-md-6" mb-3>
+      <img class="img-fluid" src="<%= event.img %>" alt="" />
+    </div>
+    <div class="col-md-6" mb-3>
+      <div class="card-body">
+        <h5 class="card-title">
+          <a href="/events/<%= event._id %>">
+            <label for="name">Event Name : </label>
+            <label id="name" name="name"> <%= event.name %> </label>
+          </a>
+        </h5>
+        <div class="card-text">
+          <label for="description">Description : </label>
+          <label id="description" name="description">
+            <%= event.description %>
+          </label>
         </div>
+        <div class="card-text">
+          <label for="website">Website : </label>
+          <label id="website" name="website"> <%= event.website %> </label>
+        </div>
+        <div class="card-text">
+          <label for="address">Address : </label>
+          <label id="address" name="address"> <%= event.address %> </label>
+        </div>
+        <div class="card-text">
+          <label for="phone">Phone : </label>
+          <label id="phone" name="phone"> <%= event.phone %> </label>
+        </div>
+        <div class="card-text">
+          <label for="priceStarts">Starts From : </label>
+          <label id="priceStarts" name="priceStarts">
+            <%= event.priceStarts %>
+          </label>
+        </div>
+        <section>
+          <form action="/events/<%= event._id %>?_method=DELETE" method="post">
+            <a href="/events/<%= event._id %>/edit">Edit</a>
+            <button class="btn btn-link">Delete</button>
+          </form>
+        </section>
       </div>
     </div>
   </div>
-  <br />
-  <br />
-  <%- include('../comment/new') %>
-  <%- include('../comment/index') %>
-
-  <!-- <h3>Comments</h3>
-  <section>
-    <a href="/events/comments/<%= event._id %>/new">Add Comment</a>
-    <a href="/events/comments/<%= event._id %>">View Comments</a>
-  </section>
-  <br />
-  <section>
-    <table style="border: 0.5px solid black">
-      <thead>
-        <th>
-          <tr>
-            <td>Text</td>
-            <td>Rating</td>
-            <td>Action</td>
-          </tr>
-        </th>
-      </thead>
-      <tbody>
-        <% for(let comment of event.comments ) { %>
-          <tr>
-            <td>
-              <a href="/events/comments/<%= event._id %>/<%= comment._id %>">
-                <%= comment.text %>
-              </a>
-            </td>
-            <td>
-              <%= comment.rating %>
-            </td>
-            <td>
-              <section class="row">
-                <form action="/events/comments/<%= event._id %>/<%= comment._id %>?_method=DELETE" method="post">
-                  <a href="/events/comments/<%= event._id %>/<%= comment._id %>/edit">Edit</a>
-                  <button class="btn btn-link">Delete</button>
-                </form>
-              </section>
-            </td>
-          </tr>
-          <% } %>
-      </tbody>
-    </table>
-  </section> -->
+</div>
+<br />
+<br />
+<%- include('../comment/new') %>

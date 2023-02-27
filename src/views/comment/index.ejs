@@ -1,33 +1,16 @@
 <% layout('layout/template') %>
 
-<!-- <h2>Comments</h2>
-  <h3>Event - <%= event.name %>
-  </h3>
-  <section>
-    <a href="/events/comments/<%= event.eid %>/new">Add Comment</a>
-    <a href="/events">Back to Events</a>
-  </section>
-  <br /> -->
-<br>
 <section>
+  <!-- Not Used Anymore -->
   <% for(let comment of event.comments ) { %>
-  <div class="list-group col-md-6">
-    <a
-      href="#"
-      class="list-group-item list-group-item-action"
-      aria-current="true"
-    >
-      <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1 a"><%= comment.text %></h5>
-        <small><%= comment.rating %>*</small>
-      </div>
-      <form
-        action="/events/comments/<%= event._id %>/<%= comment._id %>?_method=DELETE"
-        method="post"
-      >
-      <button class="btn btn-danger">Delete</button>
-    </form>
-    </a>
-  </div>
+    <div class="card mb-3 col-md-6"">
+        <div class="card-body">
+            <h5 class="card-title">Rating: <%= comment.rating %></h5>
+            <p class="card-text">Comment: <%= comment.text %></p>
+            <form action="/events/comments/<%= event._id %>/<%= comment._id %>?_method=DELETE" method="POST">
+                <button class="btn btn-sm btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
   <% } %>
 </section>
