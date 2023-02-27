@@ -17,7 +17,7 @@ CMD ["node", "src/server.js", "Development", "Kubernetes"]
 # brew install kubectl
 
 # # Setup Kubernet:
-# docker buildx build --platform linux/amd64,linux/arm64 -t prasanti85/merneventsserver ./kubernetes --push
+# docker buildx build --platform linux/amd64,linux/arm64 -t prasanti85/merneventsserver . --push
 # kubectl create deployment merneventsserver --image=prasanti85/merneventsserver
 # kubectl expose deployment merneventsserver --type=LoadBalancer --port=4000
 # minikube service merneventsserver
