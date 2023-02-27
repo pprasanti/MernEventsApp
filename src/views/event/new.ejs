@@ -4,44 +4,63 @@
     <a href="/events">Back to Events</a>
     <br><br>
     <section>
-        <form action="/events" method="post">
+        <form action="/events" method="post" novalidate class="validated-form">
             <div class="mb-3">
                 <label class="form-label" for="name">Event Name : </label>
-                <input class="form-control" type="text" id="name" name="name" placeholder="Name"></input>
+                <input class="form-control" type="text" id="name" name="name" placeholder="Name" required></input>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="description">Description : </label>
                 <br>
                 <textarea class="form-control" id="description" name="description" cols="32" rows="2"
-                    placeholder="Description"></textarea>
-            </div>
+                    placeholder="Description" required></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
             <div class="mb-3">
                 <label class="form-label" for="address">Address : </label>
                 <br>
                 <textarea class="form-control" id="address" name="address" cols="32" rows="2"
-                    placeholder="Address"></textarea>
-            </div>
+                    placeholder="Address" required></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
             <div class="mb-3">
                 <label class="form-label" for="website">Website : </label>
                 <input class="form-control" type="text" id="website" name="website" placeholder="Website"></input>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="phone">Phone : </label>
                 <input class="form-control" type="text" id="phone" name="phone" placeholder="Phone"></input>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="image">Image : </label>
                 <input class="form-control" type="text" id="image" name="image" placeholder="Image"></input>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="priceStarts">Starts From : </label>
                 <input class="form-control" type="text" id="priceStarts" name="priceStarts"
                     placeholder="Starts From"></input>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+            <div class="mb-3">
+                <button class="btn btn-success">Submit</button>
             </div>
-            <br>
-            <div>
-                <button>Submit</button>
-            </div>
-
         </form>
     </section>

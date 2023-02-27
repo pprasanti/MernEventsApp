@@ -11,6 +11,7 @@ import ejsMate from 'ejs-mate'
 // Inject DB Provider type & connect to DB
 import { loadConfig } from './config/loadConfig.js';
 import { connectDB } from './db/connection.js';
+import AppError from './utils/AppErrors.js';
 // import morgan from 'morgan';
 /*
 import cors from 'cors';
@@ -48,7 +49,8 @@ const authUser = (req, res, next) => {
     if (password == '123456') {
         next()
     } else {
-        res.status(400).send("UNAUTHORIZED")
+        // res.status(400).send("UNAUTHORIZED")
+        throw new AppError(400, "Password Required!")
     }
 }
 
@@ -66,9 +68,28 @@ app.get('/seed', authUser, async (req, res) => {
     res.render('index')
 })
 
-app.use((req, res, next) => {
-    res.status(400).json({ "message": "Data not found" })
+// const handleValidationErr = err => {
+//     return new AppError(400, `Validation Failed...${err.message}`)
+// }
 
+app.all('*', (req, res, next) => {
+    next(new AppError(404, 'Page Not Found'))
+})
+
+// app.use((err, req, res, next) => {
+//     if (err.name === 'ValidationError') err = (err);
+//     next(err)
+// })
+
+app.use((err, req, res, next) => {
+    const {
+        status = 500,
+        message = "Something went wrong!"
+    } = err
+    // res.status(status).send(message)
+    res.status(status).render('error', {err})
+    // next(err)
+    // res.status(400).json({ "message": "Data not found" })
 })
 
 app.listen(process.env.PORT, () => {

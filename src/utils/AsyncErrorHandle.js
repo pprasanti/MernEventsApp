@@ -14,7 +14,7 @@ export const wrapAsyncErrors = (fn) => {
 
     // Return Router level request validation errors if any
     return async function (req, res, next) {
-        console.log("Path : Router - express-validataion inside router")
+        console.log("Path : Router - express-validation inside router")
         console.log("Path : Router - validationResult");
         const valErrors = validationResult(req);
 
@@ -29,9 +29,12 @@ export const wrapAsyncErrors = (fn) => {
             let { message = error } = error;
             if (error.name === 'ValidationError') {
                 message = dataValidator(error);
+            } else {
+                
             }
             console.log(`Async Error ====== : ${error}`)
             res.status(400).json(message);
+            // next()
         });
 
     };

@@ -1,21 +1,27 @@
-<% layout('layout/template') %>
+<!-- <% layout('layout/template') %> -->
 
-    <h2>Add Comment</h2>
-    <h4>Event Name - <%= name %>
-    </h4>
-    <section>
-        <form action="/events/comments/<%= eid %>" method="post">
+    <h2>Comments</h2>
+    <!-- <h4>Event Name - <%= event.name %>
+    </h4> -->
+    <div class="col-md-6">
+        <form action="/events/comments/<%= event._id %>" method="post" novalidate class="validated-form">
             <section>
-                <label for="text">Comment : </label>
-                <br>
-                <textarea id="text" name="text" cols="32" rows="4" placeholder="Comment"></textarea>
-            </section>
+                <label class="form-label" for="text">Comment : </label>
+                <!-- <br> -->
+                <textarea class="form-control" id="text" name="text" cols="32" rows="4" placeholder="Comment"></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+             </section>
             <section>
-                <label for="rating">Rating : </label>
-                <input type="text" id="rating" name="rating" placeholder="Rating"></input>
+                <label class="form-label" for="rating">Rating : </label>
+                <input class="form-control" type="text" id="rating" name="rating" placeholder="Rating"></input>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </section>
             <br>
-            <button class="btn btn-success">Submit</button>
-            <a class="btn btn-dark" href="/events/<%= eid %>">Back</a>
+            <button class="btn btn-success">Add Comment</button>
+            <!-- <a class="btn btn-dark" href="/events/<%= event._id %>">Back</a> -->
         </form>
-    </section>
+    </div>

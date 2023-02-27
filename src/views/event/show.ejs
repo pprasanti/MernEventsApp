@@ -1,4 +1,4 @@
-<% layout('layout/template') %>
+<!-- <% layout('layout/template') %> -->
 
   <h2>Event Details</h2>
   <section>
@@ -62,7 +62,10 @@
   </div>
   <br />
   <br />
-  <h3>Comments</h3>
+  <%- include('../comment/new') %>
+  <%- include('../comment/index') %>
+
+  <!-- <h3>Comments</h3>
   <section>
     <a href="/events/comments/<%= event._id %>/new">Add Comment</a>
     <a href="/events/comments/<%= event._id %>">View Comments</a>
@@ -102,4 +105,4 @@
           <% } %>
       </tbody>
     </table>
-  </section>
+  </section> -->

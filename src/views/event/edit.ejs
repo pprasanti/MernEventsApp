@@ -2,23 +2,32 @@
 
     <h3>Update Event</h3>
     <section>
-        <form action="/events/<%= event._id %>?_method=PATCH" method="post">
+        <form action="/events/<%= event._id %>?_method=PATCH" method="post" novalidate class="validated-form">
             <div class="mb-3">
                 <label class="form-label" for="name">Event Name : </label>
                 <input class="form-control" type="text" id="name" name="name" value="<%= event.name %>"
                     placeholder="Name"></input>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="description">Description : </label>
                 <br>
                 <textarea class="form-control" id="description" name="description" cols="32" rows="2"
                     placeholder="Description"><%= event.description %></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="address">Address : </label>
                 <br>
                 <textarea class="form-control" id="address" name="address" cols="32" rows="2"
                     placeholder="Address"><%= event.address %></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="website">Website : </label>
@@ -53,7 +62,10 @@
         </form>
     </section>
     <br />
-    <h3>Comments</h3>
+    <%- include('../comment/new') %>
+  <%- include('../comment/index') %>
+
+    <!-- <h3>Comments</h3>
     <section>
         <a class="btn btn-link" href="/events/comments/<%= event._id %>/new">Add Comment</a>
         <a class="btn btn-link" href="/events/comments/<%= event._id %>">View Comments</a>
@@ -96,4 +108,4 @@
                     <% } %>
             </tbody>
         </table>
-    </section>
+    </section> -->
