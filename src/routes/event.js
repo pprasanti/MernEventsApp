@@ -53,15 +53,5 @@ router.patch('/:id', saveValidation, checkBodyAndQuery('id').isUUID(), eventCont
 // *******************************************
 router.delete('/:id', checkBodyAndQuery('id').isUUID(), eventController.deleteEvent)
 
-// // **********************************
-// // NEW - renders a form
-// // **********************************
-// import commentController from './../controllers/comment.js'
-// router.get('/events/:eid/comments/new', wrapAsyncErrors(commentController.newComment))
-
-// // *******************************************
-// // SHOW - details about one particular comment
-// // *******************************************
-// router.get('/events/:eid/comments/:id', checkBodyAndQuery('id').isUUID(), commentController.showComment)
 
 export default router

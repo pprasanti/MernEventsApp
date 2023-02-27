@@ -1,7 +1,7 @@
-<div class="col-6">
+  <div class="col-6">
   <h2>Leave a Comment</h2>
   <form
-    action="/events/comments/<%= event._id %>"
+    action="/events/<%= event._id %>/comments"
     method="post"
     novalidate
     class="mb-3 validated-form"
@@ -37,7 +37,7 @@
       <h5 class="card-title">Rating: <%= comment.rating %></h5>
       <p class="card-text">Comment: <%= comment.text %></p>
       <form
-        action="/events/comments/<%= event._id %>/<%= comment._id %>?_method=DELETE"
+        action="/events/<%= event._id %>/comments/<%= comment._id %>?_method=DELETE"
         method="POST"
       >
         <button class="btn btn-sm btn-danger">Delete</button>

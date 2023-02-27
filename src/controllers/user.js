@@ -29,9 +29,11 @@ const userController = {
 
     getUsers: async (req, res) => {
         const users = await userService.getUsers()
+        const {userName = 'Jitendra'} = req.cookies
 
+        res.send(`Welcome ${userName}`)
         // res.status(200).json(users)
-        res.render('user/index', { users })
+        // res.render('user/index', { users })
     },
 
     showUser: async (req, res) => {

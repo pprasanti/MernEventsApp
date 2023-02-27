@@ -14,8 +14,11 @@ const commentController = {
 
     newComment: async (req, res) => {
         const { eid } = req.params
-        const { name } = await eventService.getEventById(eid)
-        res.render('comment/new', { eid, name })
+        const event = await eventService.getEventById(eid)
+        console.log(event)
+
+        // return res.status(200).json(event);
+        res.render('comment/new', { event })
     },
 
     updateComment: async (req, res) => {
@@ -28,7 +31,6 @@ const commentController = {
 
     getCommentsByEventId: async (req, res) => {
         const { eid } = req.params
-        const events = await eventService.getEvents()
         const { name, comments } = await commentService.getCommentsByEventId(eid)
 
         // res.status(200).json(comments)

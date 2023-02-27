@@ -7,6 +7,9 @@ import commentRouter from './routes/comment.js'
 import userRouter from './routes/user.js'
 import { seedDB } from './db/mongo/seeds/index.js';
 import ejsMate from 'ejs-mate'
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
+import flash from 'connect-flash'
 
 // Inject DB Provider type & connect to DB
 import { loadConfig } from './config/loadConfig.js';
@@ -26,6 +29,13 @@ connectDB(process.env.DB_PROVIDER_MONGO)
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(methodOverride("_method"))
+app.use(cookieParser('mySecret'))
+
+const sessionOptions = { secret: 'appsecret', reSave: false, saveUninitialized: true }
+app.use(session(sessionOptions))
+
+app.use(flash())
+
 
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs')
@@ -37,7 +47,10 @@ console.log("Path : server.js");
 app.use((req, res, next) => {
     console.log(`Method : ${req.method}`);
     req.user = 'Prasanti'
-    req.query = { password: 123456 }
+    req.query.password = 123456
+
+    // locals
+    res.locals.messages = req.flash('success')
 
     next()
 })
@@ -55,8 +68,57 @@ const authUser = (req, res, next) => {
 }
 
 app.use('/events', authUser, eventRouter)
-app.use('/events/comments', authUser, commentRouter)
+app.use('/events/:eid/comments', authUser, commentRouter)
 app.use('/users', authUser, userRouter)
+
+app.get('/getsignedcookies', (req, res) => {
+    // Signed Cookies
+    res.cookie('fruit', 'apple', { signed: true })
+    res.send({ msg: `Signed Cookies : ` })
+
+})
+app.get('/verifycookies', (req, res) => {
+    // Signed Cookies
+    // res.cookie('fruit', 'apple', {signed: true})
+    console.log(req.cookies)
+    console.log(req.signedCookies)
+    res.send({ msg: `Signed Cookies : ` })
+
+})
+
+app.get('/setSession', (req, res) => {
+    // res.cookie('fruit', 'apple', {signed: true})
+    // const count = 1
+    res.send({ msg: `You have viewed this page ${req.session.count} count!!` })
+
+})
+
+app.get('/verifySession', (req, res) => {
+    req.session.count = req.session.count ? req.session.count += 1 : 1
+
+    console.log(req.session.count)
+    // console.log(req.signedCookies)
+    res.send({ msg: `You have viewed this page ${req.session.count} count!!` })
+
+})
+
+app.get('/register', (req, res) => {
+    const { username = 'Anonymous' } = req.query
+    req.session.username = username
+    console.log(req.query)
+    console.log(req.session.username)
+    // console.log(req.signedCookies)
+    res.redirect('/greet')
+    // res.send({ msg: `Hello Mr. ${req.session.username}!!!` })
+
+})
+
+app.get('/greet', (req, res) => {
+    console.log(req.session.username)
+    // console.log(req.signedCookies)
+    res.send({ msg: `Hello Mr. ${req.session.username}!!!` })
+
+})
 
 app.get('/', (req, res) => {
     res.render('index')
@@ -87,7 +149,7 @@ app.use((err, req, res, next) => {
         message = "Something went wrong!"
     } = err
     // res.status(status).send(message)
-    res.status(status).render('error', {err})
+    res.status(status).render('error', { err })
     // next(err)
     // res.status(400).json({ "message": "Data not found" })
 })

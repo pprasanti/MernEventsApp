@@ -17,8 +17,10 @@ const eventController = {
         console.log("Path : Services - inside the controller use Services to process the DTO Object");
         // if (!req.body.name) throw new AppError(400, 'Invalid Event data')
         const result = await eventService.createEvent(new EventDTO(req.body))
+        req.flash('success', 'Event Created Successfully!')
+
         // return res.status(200).json(result);
-        res.redirect(`/events/${result._id}`);
+        res.redirect('/events');
     },
 
     newEvent: async (req, res) => {
@@ -28,6 +30,7 @@ const eventController = {
     updateEvent: async (req, res) => {
         const { id } = req.params;
         const eventUpd = await eventService.updateEvent(id, new EventDTO(req.body))
+        req.flash('success', 'Event Updated Successfully!')
         // return res.status(201).json(eventUpd);
         res.redirect('/events');
     },
@@ -38,8 +41,16 @@ const eventController = {
         if (!events) {
             return next(new AppError(404, 'Product Not Found!'))
         }
+
+        // Cookies
+        res.cookie('userName', 'PRASANTI')
+        // req.flash('success', 'Event Created Successfully!')
+
         // res.status(200).json(events)
         res.render('event/index', { events })
+        
+        //Use local instead
+        // res.render('event/index', { events, message: req.flash('success') })
     },
 
     showEvent: async (req, res, next) => {
@@ -61,7 +72,6 @@ const eventController = {
             }
             // res.status(200).json(event)
             res.render('event/edit', { event })
-        
     },
 
     deleteEvent: async (req, res) => {
