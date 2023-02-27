@@ -1,5 +1,12 @@
-<% if ('' != messages) { %>
-    <div class="alert alert-success" role="alert">
-      <%= messages %>
-    </div> 
+<% if (success && '' != success) { %>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <%= success %>
+  <button
+    type="button"
+    class="btn-close"
+    data-ds-dismiss="alert"
+    aria-label="Close"
+  >
+  </button>
+</div>
 <% } %>

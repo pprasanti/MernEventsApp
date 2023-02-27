@@ -78,6 +78,7 @@ const eventController = {
         //get new data from req.body
         const { id } = req.params;
         const result = eventService.deleteEvent(id)
+        req.flash('success', 'Event Deleted Successfully!')
 
         // res.status(200).send("Event Deleted!!!")
         res.redirect('/events');

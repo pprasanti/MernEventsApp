@@ -7,6 +7,7 @@ const commentController = {
     createComment: async (req, res) => {
         const { eid } = req.params
         const result = await commentService.createComment(eid, new CommentDTO(req.body))
+        req.flash('success', 'Comment Added Successfully!')
 
         // return res.status(200).json(result);
         res.redirect(`/events/${eid}`)
@@ -23,8 +24,9 @@ const commentController = {
 
     updateComment: async (req, res) => {
         const { eid, id } = req.params;
-
         const commentUpd = await commentService.updateComment(id, new CommentDTO(req.body))
+        req.flash('success', 'Comment Updated Successfully!')
+
         // return res.status(201).json(commentUpd);
         res.redirect(`/events/${eid}`);
     },
@@ -58,6 +60,7 @@ const commentController = {
     deleteComment: async (req, res) => {
         const { eid, id } = req.params;
         const result = await commentService.deleteComment(id)
+        req.flash('success', 'Comment Deleted Successfully!')
 
         // res.status(200).send("Comment Deleted!!!")
         res.redirect(`/events/${eid}`);

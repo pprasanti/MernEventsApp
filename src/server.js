@@ -29,11 +29,20 @@ connectDB(process.env.DB_PROVIDER_MONGO)
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(methodOverride("_method"))
+app.use(express.static('src/public'))
+
 app.use(cookieParser('mySecret'))
-
-const sessionOptions = { secret: 'appsecret', reSave: false, saveUninitialized: true }
+const sessionOptions = {
+    secret: 'appsecret',
+    reSave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+    }
+}
 app.use(session(sessionOptions))
-
 app.use(flash())
 
 
@@ -50,7 +59,8 @@ app.use((req, res, next) => {
     req.query.password = 123456
 
     // locals
-    res.locals.messages = req.flash('success')
+    res.locals.success = req.flash('success')
+    res.locals.error = req.flash('error')
 
     next()
 })
