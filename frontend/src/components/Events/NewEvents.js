@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import EventForm from './EventForm';
 import './../UI/NewEvent.css';
 
 const NewEvent = (props) => {
+  const [isEditing, setIsEditing] = useState(false);
+
 
   const saveEventHandler = (eventData) => {
     const newEventData = {
@@ -11,15 +13,21 @@ const NewEvent = (props) => {
       id: Math.random().toString()
     };
 
-    console.log('newEventData : ');
-    console.log(newEventData);
-
     props.onAddEvent(newEventData)
+    setIsEditing(false)
+  }
+
+  const startEditingHandler = () => {
+    setIsEditing(true);
+  }
+  const stopEditingHandler = () => {
+    setIsEditing(false);
   }
 
   return (
     <div className='new-event'>
-      <EventForm onSaveEvent={saveEventHandler}/>
+      {!isEditing && <button onClick={startEditingHandler}>Add New Event</button>}
+      {isEditing && <EventForm onCancel={stopEditingHandler} onSaveEvent={saveEventHandler} />}
     </div>
   );
 };

@@ -19,10 +19,6 @@ const EventForm = (props) => {
     })
 
     const nameChangeHandler = (event) => {
-        // setUserInput({
-        //     ...userInput,
-        //     name: event.target.value
-        // })
         setUserInput((prevState) => {
             return { ...prevState, name: event.target.value }
         })
@@ -140,6 +136,7 @@ const EventForm = (props) => {
                 </div>
             </div>
             <div className='new-event__actions'>
+                <button type="button" onClick={props.onCancel}>Cancel</button>
                 <button type='submit'>Add Event</button>
             </div>
         </form>

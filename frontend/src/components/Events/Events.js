@@ -16,6 +16,11 @@ const Events = (props) => {
         (filteredCity !== 'All Cities' && event.city === filteredCity)
         || (filteredCity === 'All Cities' && event.city !== filteredCity)))
 
+    let eventsContent = <p >No Events found.</p>;
+    if(filteredEvents.length > 0 )
+    {
+        eventsContent = <EventsList events={filteredEvents} />
+    }
 
     return (
         <Card className="events">
@@ -24,11 +29,7 @@ const Events = (props) => {
                 selected={filteredCity}
                 onChangeFilter={filterChangeHandler}
             />
-            {filteredEvents.length <= 0 ? (
-                <p >No Events found.</p>
-            ) : (
-                <EventsList events={filteredEvents} />
-            )}
+            {eventsContent}
         </Card>
     );
 }
