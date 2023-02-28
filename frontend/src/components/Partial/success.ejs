@@ -1,0 +1,12 @@
+<% if (success && '' != success) { %>
+<div className="alert alert-success alert-dismissible fade show" role="alert">
+  <%= success %>
+  <button
+    type="button"
+    className="btn-close"
+    data-ds-dismiss="alert"
+    aria-label="Close"
+  >
+  </button>
+</div>
+<% } %>
