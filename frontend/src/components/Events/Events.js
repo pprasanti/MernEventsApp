@@ -12,14 +12,6 @@ const Events = (props) => {
         setFilteredCity(city)
     }
 
-    // const getEvents = (events) => {
-    //     if ('All Cities' !== filteredCity) {
-    //         events.filter((event) => event.city === filteredCity)
-    //     }
-    //     return events
-    // }
-
-    // const filteredEvents = getEvents(props.events)
     const filteredEvents = props.events.filter((event) => (
         (filteredCity !== 'All Cities' && event.city === filteredCity)
         || (filteredCity === 'All Cities' && event.city !== filteredCity)))
@@ -32,7 +24,11 @@ const Events = (props) => {
                 selected={filteredCity}
                 onChangeFilter={filterChangeHandler}
             />
-            <EventsList events={filteredEvents} />
+            {filteredEvents.length <= 0 ? (
+                <p >No Events found.</p>
+            ) : (
+                <EventsList events={filteredEvents} />
+            )}
         </Card>
     );
 }

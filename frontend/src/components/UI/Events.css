@@ -1,8 +1,13 @@
 .events {
     padding: 1rem;
-    background-color: rgb(31, 31, 31);
+    /* background-color: rgb(31, 31, 31); */
+    background-color:skyblue;
     margin: 2rem auto;
     width: 50rem;
     max-width: 95%;
+  }
+
+  .events-no {
+    color: white;
   }
   

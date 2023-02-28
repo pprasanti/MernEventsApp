@@ -11,7 +11,7 @@ const EventFilter = (props) => {
   return (
     <div className='expenses-filter'>
       <div className='expenses-filter__control'>
-        <label>Filter by year</label>
+        <label>Filter by city</label>
         <select value={props.selected} onChange={dropdownChangeHandler}>
           {props.cities.map((city) =>
             <option value={city}>{city}</option>

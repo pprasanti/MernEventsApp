@@ -27,7 +27,7 @@ const eventsSeed =
       name: 'Event 4',
       description: 'Event 4 Desc',
       address: 'Address 4',
-      city: 'Pune',
+      city: 'Bangalore',
       website: 'www.xyz4.com',
       priceStarts: 100000,
       img: 'https://cdn.pixabay.com/photo/2013/10/02/23/03/mountains-190055_1280.jpg',
