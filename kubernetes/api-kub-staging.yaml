@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apieventservice
+spec:
+  selector:
+    app: apievent
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 4000
+  type: LoadBalancer
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apieventdeployment
+  labels:
+    app: apievent  
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apievent
+  template:
+    metadata:
+      labels:
+        app: apievent
+    spec:
+      containers:
+      - name: apieventcontainer
+        image: prasanti85/merneventsserver:staging
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 4000
+
+---
+
+# aws eks --region us-west-1 update-kubeconfig --name eksClusterPPM 
+
+# kubectl create --save-config -f kubernetes/api-kub-staging.yaml
+# kubectl apply -f=kubernetes/api-kub-staging.yaml
+# kubectl get deployments && kubectl get pods && kubectl get namespaces && kubectl get services 
+
+# kubectl delete -f=kubernetes/api-kub-staging.yaml
+
+# # Setup Minikube
+# brew install minikube
+# minikube start --driver=docker
+# # Setup Kubelet
+# brew install kubectl

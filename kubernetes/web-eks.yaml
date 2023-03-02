@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: apieventservice
+  name: webeventservice
 spec:
   selector:
-    app: apievent
+    app: webevent
   ports:
-    - protocol: TCP
-      port: 4800
-      targetPort: 4800
+    - port: 80
+      protocol: TCP
+      # targetPort: 4800
   type: LoadBalancer
 
   # type: ClusterIP
@@ -28,38 +28,38 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: apieventdeployment
+  name: webeventdeployment
   labels:
-    app: apievent  
+    app: webevent  
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: apievent
+      app: webevent
   template:
     metadata:
       labels:
-        app: apievent
+        app: webevent
     spec:
       containers:
-      - name: apieventcontainer
-        image: prasanti85/merneventsserver
+      - name: webeventcontainer
+        image: prasanti85/webmerneventsserver:eks
         imagePullPolicy: Always
         resources:
           limits:
             memory: "128Mi"
             cpu: "500m"
         ports:
-        - containerPort: 4800
+        - containerPort: 80
 status: {}
 
 ---
 
-# aws eks --region us-west-1 update-kubeconfig --name eventsClusterPP
+# aws eks --region us-west-1 update-kubeconfig --name eksClusterPPM
 
-# kubectl create -f kubernetes/api-eks.yaml
-# kubectl apply -f=kubernetes/api-eks.yaml
+# kubectl create -f kubernetes/web-eks.yaml
+# kubectl apply -f=kubernetes/web-eks.yaml
 # kubectl get deployments && kubectl get pods && kubectl get namespaces && kubectl get services 
 
-# kubectl delete -f=kubernetes/api-eks.yaml
+# kubectl delete -f=kubernetes/web-eks.yaml
 

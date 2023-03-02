@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 
 import './../UI/EventForm.css';
-import {cityData} from './../../seeds/event'
+import { cityData } from './../../seeds/event'
 import EventFilter from './../../components/Events/EventFilter'
+import ErrorModal from '../UI/ErrorModal';
 
 const EventForm = (props) => {
     const [filteredCity, setFilteredCity] = useState('All Cities')
+    const [error, setError] = useState()
 
     const [userInput, setUserInput] = useState({
         name: 'Event 1',
@@ -71,6 +73,14 @@ const EventForm = (props) => {
     const submitHandler = (event) => {
         event.preventDefault();
 
+        if (userInput.name.length === 0 || userInput.city.length === 0) {
+            setError({
+                title: "Validation Error",
+                message: "Name & City Required"
+            })
+            return
+        }
+
         const eventData = {
             name: userInput.name,
             description: userInput.description,
@@ -97,49 +107,58 @@ const EventForm = (props) => {
         })
     }
 
+    const errorHandler = () => {
+        setError(null)
+    }
+
 
     return (
-        <form onSubmit={submitHandler}>
-            <div className='new-event__controls'>
-                <div className='new-event__control'>
-                    <label>Name</label>
-                    <input type='text' value={userInput.name} onChange={nameChangeHandler} />
-                </div>
-                <div className='new-event__control'>
-                    <label>Description</label>
-                    <input type='text' value={userInput.description} onChange={descChangeHandler} />
-                </div>
-                <div className='new-event__control'>
-                    <label>address</label>
-                    <input type='text' value={userInput.address} onChange={addChangeHandler} />
-                </div>
-                <EventFilter
-                cities={['All Cities', ...cityData]}
-                selected={filteredCity}
-                onChangeFilter={filterChangeHandler}
-                />
-                <div className='new-event__control'>
-                    <label>website</label>
-                    <input type='text' value={userInput.website} onChange={websiteChangeHandler} />
-                </div>
-                <div className='new-event__control'>
-                    <label>priceStarts</label>
-                    <input type='text' value={userInput.priceStarts} onChange={priceChangeHandler} />
-                </div>
-                <div className='new-event__control'>
-                    <label>img</label>
-                    <input type='text' value={userInput.img} onChange={imgChangeHandler} />
-                </div>
-                <div className='new-event__control'>
-                    <label>phone</label>
-                    <input type='text' value={userInput.phone} onChange={phoneChangeHandler} />
-                </div>
-            </div>
-            <div className='new-event__actions'>
-                <button type="button" onClick={props.onCancel}>Cancel</button>
-                <button type='submit'>Add Event</button>
-            </div>
-        </form>
+        <div>
+            {error && <ErrorModal onConfirm={errorHandler} title={error.title} message={error.message}></ErrorModal>}
+            <card>
+                <form onSubmit={submitHandler}>
+                    <div className='new-event__controls'>
+                        <div className='new-event__control'>
+                            <label>Name</label>
+                            <input type='text' value={userInput.name} onChange={nameChangeHandler} />
+                        </div>
+                        <div className='new-event__control'>
+                            <label>Description</label>
+                            <input type='text' value={userInput.description} onChange={descChangeHandler} />
+                        </div>
+                        <div className='new-event__control'>
+                            <label>address</label>
+                            <input type='text' value={userInput.address} onChange={addChangeHandler} />
+                        </div>
+                        <EventFilter
+                            cities={['All Cities', ...cityData]}
+                            selected={filteredCity}
+                            onChangeFilter={filterChangeHandler}
+                        />
+                        <div className='new-event__control'>
+                            <label>website</label>
+                            <input type='text' value={userInput.website} onChange={websiteChangeHandler} />
+                        </div>
+                        <div className='new-event__control'>
+                            <label>priceStarts</label>
+                            <input type='text' value={userInput.priceStarts} onChange={priceChangeHandler} />
+                        </div>
+                        <div className='new-event__control'>
+                            <label>img</label>
+                            <input type='text' value={userInput.img} onChange={imgChangeHandler} />
+                        </div>
+                        <div className='new-event__control'>
+                            <label>phone</label>
+                            <input type='text' value={userInput.phone} onChange={phoneChangeHandler} />
+                        </div>
+                    </div>
+                    <div className='new-event__actions'>
+                        <button type="button" onClick={props.onCancel}>Cancel</button>
+                        <button type='submit'>Add Event</button>
+                    </div>
+                </form>
+            </card>
+        </div>
     );
 };
 

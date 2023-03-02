@@ -5,9 +5,9 @@ import {
     getUsers,
     getUserById,
     deleteUser
-} from './../db/mongo/repositories/user.js'
+} from './../db/mongo/services/userService.js'
 
-const userService  = {
+export {
     seedUsers,
     createUser,
     updateUser,
@@ -15,7 +15,3 @@ const userService  = {
     getUserById,
     deleteUser
 }
-
-export default  userService 
-
-

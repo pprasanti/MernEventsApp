@@ -1,5 +1,4 @@
-import Event from '../../../db/mongo/models/event.js'
-import EventDTO from '../../../dto/event.js';
+import Event from '../../../db/mongo/models/eventModel.js'
 import { seedEventsDb } from '../seeds/event.js';
 
 // Seed Events

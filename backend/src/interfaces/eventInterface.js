@@ -5,11 +5,11 @@ import {
     getEvents,
     getEventById,
     deleteEvent
-} from './../db/mongo/repositories/event.js'
+} from './../db/mongo/services/eventService.js'
 
-import { getEvents as mysqlGetEvents } from './../db/mysql/repositories/event.js'
+import { getEvents as mysqlGetEvents } from './../db/mysql/services/eventService.js'
 
-const eventService  = {
+export {
     seedEvents,
     createEvent,
     updateEvent,
@@ -18,7 +18,5 @@ const eventService  = {
     deleteEvent,
     mysqlGetEvents
 }
-
-export default  eventService 
 
 

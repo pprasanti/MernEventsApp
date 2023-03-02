@@ -1,5 +1,5 @@
-import Comment from '../../../db/mongo/models/comment.js'
-import Event from '../../../db/mongo/models/event.js';
+import Comment from '../../../db/mongo/models/commentModel.js'
+import Event from '../../../db/mongo/models/eventModel.js';
 
 // Add a new Comment
 async function createComment(eid, commentDTO) {

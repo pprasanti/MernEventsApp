@@ -26,8 +26,9 @@ const Event = (props) => {
                     <a href='/events/{event._id}'> {name} </a>
                 </h5>
                 <div className="event-description">{event.description}</div>
-                <div className="card-price">{event.city}</div>
-                <div className="card-price">{event.address}</div>
+                {/* <div className={`card-price ${!event.city ? 'green' : 'blue'}`}>{event.city}</div> */}
+                <div className="card-price" style={{color: ('Bangalore' === event.city)? 'green' : 'blue'}}>{event.city}</div>
+                <div className="card-price" style={{color: ('Bangalore' === event.city)? 'green' : 'blue'}}>{event.address}</div>
                 <div className="card-price">{event.website}</div>
                 <div className="card-price">{event.phone}</div>
                 <div className="card-price">{event.priceStarts}</div>
@@ -39,7 +40,7 @@ const Event = (props) => {
                         method="post"
                     >
 
-                        {/* <a href="/events/{ event._id}/edit">Edit</a> */}
+                        <a href="/events/{ event._id}/edit">Edit</a>
                         <a href="/events/{ event._id}">View Comments</a>
 
                         <button className="btn btn-link">Delete</button>

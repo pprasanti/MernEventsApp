@@ -6,21 +6,10 @@ spec:
   selector:
     app: apievent
   ports:
-    # - protocol: TCP
-    - port: 4000
+    - protocol: TCP
+      port: 80
       targetPort: 4000
   type: LoadBalancer
-
-  # type: ClusterIP
-  # ports:
-  #   - port: 4000
-  #     targetPort: 4000
-
-  # type: NodePort
-  # ports:
-  #   - port: 4000
-  #     targetPort: 4000
-  #     nodePort: 30008
 
 ---
 
@@ -28,7 +17,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: apieventdeployment
+  labels:
+    app: apievent  
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: apievent
@@ -39,7 +31,7 @@ spec:
     spec:
       containers:
       - name: apieventcontainer
-        image: prasanti85/merneventsserver
+        image: prasanti85/merneventsserver:dev
         imagePullPolicy: Always
         resources:
           limits:
@@ -50,8 +42,14 @@ spec:
 
 ---
 
+# kubectl create --save-config -f kubernetes/api-kub-local.yaml
 # kubectl apply -f=kubernetes/api-kub.yaml
 # kubectl get deployments && kubectl get pods && kubectl get namespaces && kubectl get services && minikube service apieventservice
 
 # kubectl delete -f=kubernetes/api-kub.yaml
 
+# # Setup Minikube
+# brew install minikube
+# minikube start --driver=docker
+# # Setup Kubelet
+# brew install kubectl

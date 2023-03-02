@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import Comment from "./comment.js";
+import Comment from "./commentModel.js";
 
 const eventSchema = new Schema(
     {

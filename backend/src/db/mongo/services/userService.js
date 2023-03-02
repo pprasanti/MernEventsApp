@@ -1,4 +1,4 @@
-import User from '../../../db/mongo/models/user.js'
+import User from '../../../db/mongo/models/userModel.js'
 import { seedUsersDb } from '../seeds/user.js';
 
 // Seed Users

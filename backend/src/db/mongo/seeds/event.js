@@ -1,4 +1,4 @@
-import Event from "../../../db/mongo/models/event.js"
+import Event from "../../../db/mongo/models/eventModel.js"
 
 export const seedEventsDb = async () => {
   await Event.deleteMany({})
