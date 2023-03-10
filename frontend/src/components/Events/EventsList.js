@@ -1,7 +1,7 @@
 
 import Card from '../UI/Card'
 import Event from './Event';
-import '../UI/Events.css';
+import '../UI/Events.module.css';
 import React, { Fragment, useEffect, useState } from 'react';
 import NewEvent from './NewEvents';
 // eslint-disable-next-line

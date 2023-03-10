@@ -1,5 +1,5 @@
 .login__form {
-  display:inline !important;
+  display:inline-flex !important;
   flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 1rem;

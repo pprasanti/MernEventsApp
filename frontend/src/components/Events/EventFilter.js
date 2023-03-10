@@ -1,7 +1,7 @@
 // import { useState } from "react"
 // import Card from "../UI/Card"
-import './../UI/Card.css'
-import './../UI/Event.css'
+import './../UI/Card.module.css'
+import './../UI/Event.module.css'
 
 const EventFilter = (props) => {
   const dropdownChangeHandler = (city) => {

@@ -11,7 +11,7 @@ const Login = () => {
     const [username, setUsername] = React.useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [error, setError] = useState('');
+    const [error, setError] = useState();
     const validateEmpty = (value) => value == null || value.length === 0 || value === undefined;
     const navigate = useNavigate();
 
@@ -19,17 +19,17 @@ const Login = () => {
         e.preventDefault();
         try {
             // if (validateEmpty(username)) {
-            //     setError('Username required');
+            // setError({title:'Username required', message: "Username can't be empty"});
             //     return;
             // }
 
             if (validateEmpty(email)) {
-                setError('Email required');
+                setError({ title: 'Email required', message: "Email can't be empty" });
                 return;
             }
 
             if (validateEmpty(password)) {
-                setError('Password required');
+                setError({ title: 'Password required', message: "Password can't be empty" });
                 return;
             }
 
@@ -46,10 +46,10 @@ const Login = () => {
                 localStorage.setItem("token", response.data.user.accessToken)
                 navigate('/events');
             } else {
-                setError('Invalid user credential');
+                setError({ title: 'Login Error', message: "Invalid user credential" });
             }
         } catch (e) {
-            setError('Invalid user credential');
+            setError({ title: 'Login Error', message: "Invalid user credential" });
         }
     }
 
@@ -60,13 +60,19 @@ const Login = () => {
 
     return (
         <Wrapper>
-            {error && <ErrorModal onConfirm={errorHandler} title={error.title} message={error.message}></ErrorModal>}
+            {console.log(error)}
+            {error && (
+                <ErrorModal
+                    title={error.title}
+                    message={error.message}
+                    onConfirm={errorHandler}
+                />
+            )}
             <Card className="login">
                 <div className="login__form">
                     <form className="loginForm" onSubmit={handleSubmit}>
                         {/* <span className="loginTitle"><b>Login</b></span> */}
                         <h1>Log In</h1>
-                        {error && <p className="error">{error}</p>}
                         <div className='login__controls'>
                             <div className='login__control'>
                                 {/* <label>Username </label>

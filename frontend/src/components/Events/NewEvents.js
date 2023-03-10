@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 import EventForm from './EventForm';
-import './../UI/NewEvent.css';
+import './../UI/NewEvent.module.css';
 
 const NewEvent = (props) => {
   const [isEditing, setIsEditing] = useState(false);

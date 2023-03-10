@@ -4,9 +4,9 @@ import { Button } from "react-bootstrap"
 import { Link, useLocation } from "react-router-dom"
 import axiosClient from './../../Utils/AxiosClient'
 import Card from "../UI/Card"
-import './../UI/Card.css'
-import './../UI/Event.css'
-import './../UI/Events.css'
+import './../UI/Card.module.css'
+import './../UI/Event.module.css'
+import './../UI/Events.module.css'
 
 const Event = () => {
 

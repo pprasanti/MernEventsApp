@@ -9,12 +9,13 @@
 }
 
 .modal {
-  position: fixed;
-  top: 30vh;
-  left: 10%;
-  width: 80%;
-  z-index: 100;
-  overflow: hidden;
+  position: fixed !important;
+  top: 30vh !important;
+  /* left: 10% !important; */
+  width: 50% !important;
+  z-index: 100 !important;
+  overflow: hidden !important;
+  /* display: inline-block; */
 }
 
 .header {

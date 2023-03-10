@@ -1,6 +1,6 @@
 
 import Card from '../UI/Card'
-import '../UI/Events.css';
+import '../UI/Events.module.css';
 import React, { useEffect, useState } from 'react';
 import EventsList from './EventsList';
 import EventFilter from './EventFilter';
