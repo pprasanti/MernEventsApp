@@ -1,18 +1,22 @@
 import User from '../../../db/mongo/models/userModel.js'
 import { seedUsersDb } from '../seeds/user.js';
+import bcrypt from 'bcrypt';
 
 // Seed Users
 export async function seedUsers() {
     await seedUsersDb()
 }
 
-// Add a new User
+// Add a new User / Register User
 export async function createUser(userDTO) {
-    const user = new Comment(userDTO)
+    const user = new User(userDTO)
     return await user.save()
-        .then(data => {
-            data.fullName = data.fullName
-        })
+    // req.session.userId = user._id
+}
+
+// Login User
+export async function loginUser(email, password) {
+    return await User.findAndValidate(email, password)
 }
 
 // Update User
@@ -46,3 +50,5 @@ export async function getUserById(id) {
 export async function deleteUser(id) {
     return await User.findByIdAndDelete(id)
 }
+
+

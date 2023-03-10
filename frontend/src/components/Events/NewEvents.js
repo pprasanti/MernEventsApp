@@ -27,7 +27,7 @@ const NewEvent = (props) => {
   return (
     <div className='new-event'>
       {!isEditing && <button onClick={startEditingHandler}>Add New Event</button>}
-      {isEditing && <EventForm onCancel={stopEditingHandler} onSaveEvent={saveEventHandler} />}
+      {isEditing && <EventForm onCancel={stopEditingHandler} onSaveEvent={saveEventHandler} cities={props.cities}/>}
     </div>
   );
 };

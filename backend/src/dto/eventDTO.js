@@ -21,15 +21,15 @@ class EventDTO {
 
     validate() {
         if (validateEmpty(this.title)) {
-            throw new AppError('title required', 401);
+            throw new AppError(401,'title required');
         }
 
         if (validateEmpty(this.description)) {
-            throw new AppError('description required', 401);
+            throw new AppError(401, 'description required');
         }
 
         if (validateEmpty(this.date)) {
-            throw new AppError('date required', 401);
+            throw new AppError(401, 'date required');
         }
     }
 

@@ -1,0 +1,19 @@
+.color-dark {
+  color: black !important;
+}
+
+.logo-img {
+  width: 50px !important;
+}
+
+.logo-text {
+  font-size: medium;
+}
+
+.topLeft,
+.topRight {
+  flex: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

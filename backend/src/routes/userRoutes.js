@@ -1,36 +1,21 @@
 import express from 'express';
+import passport from 'passport';
 import userController from '../controllers/userController.js';
+import wrapAsyncErrors from './../utils/AsyncErrorHandle.js'
 
 const router = express.Router()
 
-router.get('/seed', userController.seedUsers)
+router.get('/seed', wrapAsyncErrors(userController.seedUsersData))
 
-router.post('/', userController.createUser)
+router.route('/')
+  .get(wrapAsyncErrors(userController.getUsers))
+  .post(wrapAsyncErrors(userController.createUser))
 
-router.patch('/:id', userController.updateUser)
+router.route('/:id')
+  .patch(wrapAsyncErrors(userController.updateUser))
+  .get(wrapAsyncErrors(userController.showUser))
+  .delete(wrapAsyncErrors(userController.deleteUser))
 
-router.get('/', userController.getUsers)
-
-router.get('/:id', userController.showUser)
-
-router.delete('/:id', userController.deleteUser)
-
-router.get('/register', (req, res) => {
-    const { username = 'Anonymous' } = req.query
-    req.session.username = username
-    console.log(req.query)
-    console.log(req.session.username)
-    // console.log(req.signedCookies)
-    res.redirect('/greet')
-    // res.send({ msg: `Hello Mr. ${req.session.username}!!!` })
-
-})
-
-router.get('/greet', (req, res) => {
-    console.log(req.session.username)
-    // console.log(req.signedCookies)
-    res.send({ msg: `Hello Mr. ${req.session.username}!!!` })
-
-})
+router.get('/greet', wrapAsyncErrors(userController.greet))
 
 export default router

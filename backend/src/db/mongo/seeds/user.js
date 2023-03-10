@@ -1,13 +1,16 @@
 import User from "../../../db/mongo/models/userModel.js"
 
 export const seedUsersDb = async () => {
+  var result
   await User.deleteMany({})
-    .then(data => console.log("Deleted all Users successfully!!"))
+    .then(async data => {
+      console.log("Deleted all Users successfully!!")
+      result = await User.insertMany(users)
+        .catch(err => console.error("Failed while running seed. : " + err))
+    })
     .catch(err => console.error("Failed while Deleting all."))
-
-  await User.insertMany(users)
-    .then(data => console.log("Seed Events successfully!!"))
-    .catch(err => console.error("Failed while running seed."))
+  
+    return result
 }
 
 export const users =
@@ -24,6 +27,7 @@ export const users =
         }
       ],
       email: 'abc1@gmail.com',
+      password: '123456',
       img: '',
       phone: 9886731992
     },
@@ -39,6 +43,7 @@ export const users =
         }
       ],
       email: 'abc2@gmail.com',
+      password: '123456',
       img: '',
       phone: 9886732992
     },
@@ -54,6 +59,7 @@ export const users =
         }
       ],
       email: 'abc3@gmail.com',
+      password: '123456',
       img: '',
       phone: 9886733992
     },
@@ -69,6 +75,7 @@ export const users =
         }
       ],
       email: 'abc4@gmail.com',
+      password: '123456',
       img: '',
       phone: 9886734992
     },
@@ -84,6 +91,7 @@ export const users =
         }
       ],
       email: 'abc5@gmail.com',
+      password: '123456',
       img: '',
       phone: 9886735992
     },

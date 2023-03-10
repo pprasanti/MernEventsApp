@@ -3,7 +3,7 @@ import { seedEventsDb } from '../seeds/event.js';
 
 // Seed Events
 export async function seedEvents() {
-    await seedEventsDb()
+    return await seedEventsDb()
 }
 
 // Add a new Event

@@ -1,36 +1,63 @@
-// import fs from 'fs';
-// import admin from 'firebase-admin';
-// import express from 'express';
+import authJwt from "./authJwt.js";
+import User from "./../db/mongo/models/userModel.js";
+import {ROLES} from "./../db/mongo/models/roleModel.js";
 
-// const router = express.Router();
+const checkDuplicateUsernameOrEmail = (req, res, next) => {
+  // Username
+  console.log(`req.body.username : ${req.body.username} `)
+  User.findOne({
+    username: req.body.username
+  }).exec((err, user) => {
+    if (err) {
+      res.status(500).send({ message: err });
+      return;
+    }
 
-// const authMiddleware = () => {
-//   const credentials = JSON.parse(fs.readFileSync('./credentials.json'));
+    if (user) {
+      res.status(400).send({ message: "Failed! Username is already in use!" });
+      return;
+    }
 
-//   if (admin.apps.length === 0) {
-//     admin.initializeApp({
-//       credential: admin.credential.cert(credentials),
-//     });
-//   }
+    // Email
+    User.findOne({
+      email: req.body.email
+    }).exec((err, user) => {
+      if (err) {
+        res.status(500).send({ message: err });
+        return;
+      }
 
-//   router.use(async (req, res, next) => {
-//     const { authtoken } = req.headers;
+      if (user) {
+        res.status(400).send({ message: "Failed! Email is already in use!" });
+        return;
+      }
 
-//     // using auth token extract user details after verification
-//     if (authtoken) {
-//       try {
-//         req.user = (await admin.auth().verifyIdToken(authtoken)) || {};
-//       } catch (e) {
-//         res.sendStatus(400);
-//       }
+      next();
+    });
+  });
+};
 
-//       if (req.user) {
-//         next();
-//       } else {
-//         res.sendStatus(401);
-//       }
-//     }
-//   });
-// };
+const checkRolesExisted = (req, res, next) => {
+  if (req.body.roles) {
+    console.log(req.body.roles.length)
+    for (let i = 0; i < req.body.roles.length; i++) {
+    console.log(req.body.roles[i])
+      if (!ROLES.includes(req.body.roles[i])) {
+        res.status(400).send({
+          message: `Failed! Role ${req.body.roles[i]} does not exist!`
+        });
+        return;
+      }
+    }
+  }
 
-// export default authMiddleware;
+  next();
+};
+
+const authMiddleware = {
+  authJwt,
+  checkDuplicateUsernameOrEmail,
+  checkRolesExisted
+};
+
+export default authMiddleware

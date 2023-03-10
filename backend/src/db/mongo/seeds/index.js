@@ -7,7 +7,6 @@ export const seedDB = async () => {
     loadConfig()
     dbConnect()
 
-    seedUsersDb()
-    seedEventsDb()
-
+    await seedUsersDb()
+    await seedEventsDb()
 }

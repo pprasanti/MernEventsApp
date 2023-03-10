@@ -1,39 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
-import EventList from './components/Events/Events';
-import EventFilter from './components/Events/EventFilter';
-import Navbar from './components/Partial/navbar';
-import { eventsSeed, cityData } from './seeds/event'
-import NewEvent from './components/Events/NewEvents';
-import { useState } from 'react';
+import React from 'react';
+import TopBar from './components/Partial/TopBar';
+import Home from './components/Home/Home';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Event from './components/Events/Event';
+import EventsIndex from './components/Events/EventsIndex';
+import Login from './components/Auth/Login';
 
+// const App = () => {
 
-const App = () => {
-  const [events, setEvents] = useState(
-    eventsSeed
-  );
-
-  const [cities, setCities] = useState(
-    ["All Cities", ...cityData]
-  );
-
-  const addEventHandler = (eventData) => {
-    setEvents((prevEvents) => {
-      return [eventData, ...events]
-    })
-  }
-
+function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Navbar></Navbar>
-      </header>
-      <body>
-        <NewEvent onAddEvent={addEventHandler}></NewEvent>
-        <EventList events={events} cities={cities}></EventList>
-      </body>
-    </div>
-  );
+    <BrowserRouter>
+      <div className="App">
+        <TopBar />
+        <div id="page-body">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/events" element={<EventsIndex />} />
+            <Route path="/event/:eventId" element={<Event />} />
+            <Route path="/login" element={<Login />} />
+            {/* <Route path="/signup" element={<SignUpPage />} /> */}
+
+          </Routes>
+        </div>
+      </div>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App

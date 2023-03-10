@@ -1,6 +1,5 @@
 import EventDTO from '../dto/eventDTO.js'
 import AppError from '../utils/AppErrors.js'
-import wrapAsyncErrors from './../utils/AsyncErrorHandle.js'
 import {
     seedEvents,
     createEvent,
@@ -13,12 +12,12 @@ import {
 
 const eventController = {
 
-    seedEvents: wrapAsyncErrors({ seedEvents }, async (req, res) => {
+    seedEventsData: ({ seedEvents }, async (req, res, next) => {
         const result = await seedEvents()
-        res.status(200).json(result)
+        res.json({status : 200, message: "Events seeds successfully!", data: result})
     }),
 
-    createEvent: wrapAsyncErrors({ createEvent }, async (req, res, next) => {
+    createEvent: ({ createEvent }, async (req, res, next) => {
         const Event = new EventDTO(req.body)
         Event.validate();
 
@@ -35,7 +34,7 @@ const eventController = {
         return res.status(201).json(eventUpd);
     }),
 
-    getEvents: wrapAsyncErrors(({ getEvents }, async (req, res, next) => {
+    getEvents: (({ getEvents }, async (req, res, next) => {
         const events = await getEvents()
         if (!events) {
             return next(new AppError(404, 'Events Not Found!'))
@@ -48,7 +47,7 @@ const eventController = {
         const { id } = req.params
         const event = await getEventById(id)
         if (!event) {
-            return next(new AppError(404, 'Product Not Found!'))
+            return next(new AppError(404, 'Event Not Found!'))
         }
         res.status(200).json(event)
     }),

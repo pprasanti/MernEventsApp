@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
 
 import './../UI/EventForm.css';
-import { cityData } from './../../seeds/event'
+// import { cityData } from './../../seeds/city'
 import EventFilter from './../../components/Events/EventFilter'
 import ErrorModal from '../UI/ErrorModal';
+import Wrapper from '../Helpers/Wrapper';
 
 const EventForm = (props) => {
     const [filteredCity, setFilteredCity] = useState('All Cities')
-    const [error, setError] = useState()
+    const [error, setError] = useState();
 
     const [userInput, setUserInput] = useState({
-        name: 'Event 1',
-        description: 'Event 1 Desc',
-        address: 'Address 1',
-        city: 'Pune',
-        website: 'www.xyz1.com',
-        priceStarts: 100000,
-        img: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg',
-        phone: 9886731992,
+        // name: 'New Event 1',
+        // description: 'New Event 1 Desc',
+        // address: 'New Address 1',
+        // city: 'Pune',
+        // website: 'www.xyzNew1.com',
+        // priceStarts: 100000,
+        // img: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg',
+        // phone: 9886731992,
     })
 
     const nameChangeHandler = (event) => {
@@ -77,7 +78,7 @@ const EventForm = (props) => {
             setError({
                 title: "Validation Error",
                 message: "Name & City Required"
-            })
+            });
             return
         }
 
@@ -113,9 +114,9 @@ const EventForm = (props) => {
 
 
     return (
-        <div>
+        <Wrapper>
             {error && <ErrorModal onConfirm={errorHandler} title={error.title} message={error.message}></ErrorModal>}
-            <card>
+            <div>
                 <form onSubmit={submitHandler}>
                     <div className='new-event__controls'>
                         <div className='new-event__control'>
@@ -130,8 +131,8 @@ const EventForm = (props) => {
                             <label>address</label>
                             <input type='text' value={userInput.address} onChange={addChangeHandler} />
                         </div>
-                        <EventFilter
-                            cities={['All Cities', ...cityData]}
+                        <EventFilter 
+                            cities={props.cities}
                             selected={filteredCity}
                             onChangeFilter={filterChangeHandler}
                         />
@@ -157,8 +158,8 @@ const EventForm = (props) => {
                         <button type='submit'>Add Event</button>
                     </div>
                 </form>
-            </card>
-        </div>
+            </div>
+        </Wrapper>
     );
 };
 

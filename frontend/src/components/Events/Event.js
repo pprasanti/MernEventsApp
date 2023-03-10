@@ -1,53 +1,75 @@
-import { useState } from "react"
+import React, { useState } from "react"
+// eslint-disable-next-line
+import { Button } from "react-bootstrap"
+import { Link, useLocation } from "react-router-dom"
+import axiosClient from './../../Utils/AxiosClient'
 import Card from "../UI/Card"
 import './../UI/Card.css'
 import './../UI/Event.css'
 import './../UI/Events.css'
 
-const Event = (props) => {
-    const [name, setName] = useState(
-        props.event.name
+const Event = () => {
+
+    const eventId = useLocation().pathname.split('/')[2] ?? 0
+    const [event, setEvent] = useState('')
+    // eslint-disable-next-line
+    const [error, setError] = useState('')
+
+    const [user, setUser] = React.useState(
+        JSON.parse(localStorage.getItem('user'))
     );
 
-    const clickHandler = () => {
-        setName("Updated")
-    }
+    React.useEffect(() => {
+        setUser(JSON.parse(localStorage.getItem('user')));
+        console.log(eventId);
 
-    const event = props.event
+        const getEvent = () => {
+            axiosClient.get(`/events/${eventId}`)
+                .then(res => {
+                    console.log(res.data);
+                    setEvent(res.data);
+                })
+                .catch(err => {
+                    setError(err.message);
+                })
+        }
+        getEvent();
+    }, [eventId]);
+
     return (
-        <Card className="event-item">
-            <div className="event-card-block">
-                {/* <div className="col-md-4 align-middle" mb-3> */}
-                <img className="event-img" src={event.img} alt="" />
-                {/* </div> */}
-            </div>
-            <div className="event-card-block">
-                <h5 className="event-name">
-                    <a href='/events/{event._id}'> {name} </a>
-                </h5>
-                <div className="event-description">{event.description}</div>
-                {/* <div className={`card-price ${!event.city ? 'green' : 'blue'}`}>{event.city}</div> */}
-                <div className="card-price" style={{color: ('Bangalore' === event.city)? 'green' : 'blue'}}>{event.city}</div>
-                <div className="card-price" style={{color: ('Bangalore' === event.city)? 'green' : 'blue'}}>{event.address}</div>
-                <div className="card-price">{event.website}</div>
-                <div className="card-price">{event.phone}</div>
-                <div className="card-price">{event.priceStarts}</div>
-                <button onClick={clickHandler} className="btn btn-link">Edit</button>
+        <div>
+            <Card className="event-item flex-row">
+                <div className="col-6 event-card-block">
+                    <img className="event-img" src={event.img} alt="" />
+                </div>
+                <div className="col-6 event-card-block">
+                    <h5 className="event-name">
+                        <Link to={`/event/${event._id}`} className="link"> {event.name} </Link>
+                    </h5>
+                    <div className="event-description">{event.description}</div>
+                    <div className="card-price" style={{ color: ('Bangalore' === event.city) ? 'green' : 'blue' }}>{event.city}</div>
+                    <div className="card-price" style={{ color: ('Bangalore' === event.city) ? 'green' : 'blue' }}>{event.address}</div>
+                    <div className="card-price">{event.website}</div>
+                    <div className="card-price">{event.phone}</div>
+                    <div className="card-price">{event.priceStarts}</div>
+                    <section>
+                        <form
+                            action="/events/{ event._id}?_method=DELETE"
+                            method="post"
+                        >
+                            {user ? (
+                                <div className="flex-row">
+                                    <a href="/events/{ event._id}/edit">Edit</a>
+                                    <button className="btn btn-link">Delete</button>
+                                </div>
+                            ) : null}
 
-                <section>
-                    <form
-                        action="/events/{ event._id}?_method=DELETE"
-                        method="post"
-                    >
-
-                        <a href="/events/{ event._id}/edit">Edit</a>
-                        <a href="/events/{ event._id}">View Comments</a>
-
-                        <button className="btn btn-link">Delete</button>
-                    </form>
-                </section>
-            </div>
-        </Card>
+                            <a href="/events/{ event._id}">View Comments</a>
+                        </form>
+                    </section>
+                </div>
+            </Card>
+        </div>
     );
 }
 

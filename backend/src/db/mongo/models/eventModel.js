@@ -15,6 +15,10 @@ const eventSchema = new Schema(
             type: String,
             required: [true, 'Address is required'],
         },
+        city: {
+            type: String,
+            required: [true, 'City is required'],
+        },
         website: {
             type: String,
         },
@@ -34,7 +38,8 @@ const eventSchema = new Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Comment'
         }],
-    }
+    },
+    { timestamps: true }
 )
 
 eventSchema.methods

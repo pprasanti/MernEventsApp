@@ -4,7 +4,8 @@ import {
     updateUser,
     getUsers,
     getUserById,
-    deleteUser
+    deleteUser,
+    loginUser,
 } from './../db/mongo/services/userService.js'
 
 export {
@@ -13,5 +14,6 @@ export {
     updateUser,
     getUsers,
     getUserById,
-    deleteUser
+    deleteUser,
+    loginUser,
 }

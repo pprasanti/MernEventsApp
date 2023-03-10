@@ -1,20 +1,22 @@
 import express from 'express';
 import eventController from '../controllers/eventController.js';
+import wrapAsyncErrors from '../utils/AsyncErrorHandle.js';
 import { saveValidation, checkBodyAndQuery, validateData } from './../validations/event.js'
 
 const router = express.Router()
 
-router.get("/seed", eventController.seedEvents)
+console.log(`process.env.AUTH_TYPE : ${process.env.AUTH_TYPE}`)
 
-router.get("/", eventController.getEvents)
+router.get("/seed", wrapAsyncErrors(eventController.seedEventsData))
 
-router.get('/:id', checkBodyAndQuery('id').isUUID(), eventController.showEvent)
+router.route('/')
+    .get(wrapAsyncErrors(eventController.getEvents))
+    .post(saveValidation, wrapAsyncErrors(eventController.createEvent))
 
-router.post("/", saveValidation, eventController.createEvent)
-
-router.patch('/:id', saveValidation, checkBodyAndQuery('id').isUUID(), eventController.updateEvent)
-
-router.delete('/:id', checkBodyAndQuery('id').isUUID(), eventController.deleteEvent)
+router.route('/:id')
+    .get(checkBodyAndQuery('id').isUUID(), wrapAsyncErrors(eventController.showEvent))
+    .patch(saveValidation, checkBodyAndQuery('id').isUUID(), wrapAsyncErrors(eventController.updateEvent))
+    .delete(checkBodyAndQuery('id').isUUID(), wrapAsyncErrors(eventController.deleteEvent))
 
 
 export default router

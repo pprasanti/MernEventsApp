@@ -27,7 +27,7 @@ const commentController = {
         return res.status(201).json(commentUpd);
     }),
 
-    getCommentsByEventId: wrapAsyncErrors({ getCommentsByEventId },  async (req, res) => {
+    getCommentsByEventId: wrapAsyncErrors({ getCommentsByEventId },  async (req, res, next) => {
         const { eid } = req.params
         const { name, comments } = await getCommentsByEventId(eid)
         if (!comments) {
@@ -37,7 +37,7 @@ const commentController = {
         res.status(200).json(comments)
     }),
 
-    showComment: wrapAsyncErrors({ getCommentById },  async (req, res) => {
+    showComment: wrapAsyncErrors({ getCommentById },  async (req, res, next) => {
         const { eid, id } = req.params
         const comment = await getCommentById(id)
         if (!comment) {
@@ -49,10 +49,10 @@ const commentController = {
     deleteComment: wrapAsyncErrors({ deleteComment },  async (req, res) => {
         const { eid, id } = req.params;
         const result = await deleteComment(id)
-        req.flash('success', 'Comment Deleted Successfully!')
+        // req.flash('success', 'Comment Deleted Successfully!')
 
-        // res.status(200).send("Comment Deleted!!!")
-        res.redirect(`/events/${eid}`);
+        res.status(200).send("Comment Deleted!!!")
+        // res.redirect(`/events/${eid}`);
     }),
 }
 

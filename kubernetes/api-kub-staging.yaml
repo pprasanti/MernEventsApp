@@ -42,7 +42,7 @@ spec:
 
 ---
 
-# aws eks --region us-west-1 update-kubeconfig --name eksClusterPPM 
+# aws eks --region us-west-1 update-kubeconfig --name eksClusterNode 
 
 # kubectl create --save-config -f kubernetes/api-kub-staging.yaml
 # kubectl apply -f=kubernetes/api-kub-staging.yaml
