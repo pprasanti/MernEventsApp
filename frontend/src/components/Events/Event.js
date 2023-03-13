@@ -5,8 +5,7 @@ import { Link, useLocation } from "react-router-dom"
 import axiosClient from './../../Utils/AxiosClient'
 import Card from "../UI/Card"
 import './../UI/Card.module.css'
-import './../UI/Event.module.css'
-import './../UI/Events.module.css'
+import eventCss from './Event.module.css';
 
 const Event = () => {
 
@@ -38,20 +37,20 @@ const Event = () => {
 
     return (
         <div>
-            <Card className="event-item flex-row">
-                <div className="col-6 event-card-block">
-                    <img className="event-img" src={event.img} alt="" />
+            <Card className={eventCss.item}>
+                <div className={eventCss.card_block}>
+                    <img className={eventCss.img} src={event.img} alt="" />
                 </div>
-                <div className="col-6 event-card-block">
-                    <h5 className="event-name">
+                <div className={eventCss.card_block}>
+                    <h5 className={eventCss.name}>
                         <Link to={`/event/${event._id}`} className="link"> {event.name} </Link>
                     </h5>
-                    <div className="event-description">{event.description}</div>
-                    <div className="card-price" style={{ color: ('Bangalore' === event.city) ? 'green' : 'blue' }}>{event.city}</div>
-                    <div className="card-price" style={{ color: ('Bangalore' === event.city) ? 'green' : 'blue' }}>{event.address}</div>
-                    <div className="card-price">{event.website}</div>
-                    <div className="card-price">{event.phone}</div>
-                    <div className="card-price">{event.priceStarts}</div>
+                    <div className={eventCss.description}>{event.description}</div>
+                    <div className={eventCss.card_rice} style={{ color: ('Bangalore' === event.city) ? 'green' : 'blue' }}>{event.city}</div>
+                    <div className={eventCss.card_rice} style={{ color: ('Bangalore' === event.city) ? 'green' : 'blue' }}>{event.address}</div>
+                    <div className={eventCss.card_rice}>{event.website}</div>
+                    <div className={eventCss.card_rice}>{event.phone}</div>
+                    <div className={eventCss.card_rice}>{event.priceStarts}</div>
                     <section>
                         <form
                             action="/events/{ event._id}?_method=DELETE"

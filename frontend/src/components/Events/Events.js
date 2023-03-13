@@ -1,11 +1,9 @@
 
 import Card from '../UI/Card'
-import '../UI/Events.module.css';
-import React, { useEffect, useState } from 'react';
+import eventCss from './Event.module.css';
+import React, { useState } from 'react';
 import EventsList from './EventsList';
 import EventFilter from './EventFilter';
-import axiosClient from '../../Utils/AxiosClient';
-import { cityData } from '../../seeds/city';
 
 const Events = (props) => {
     const [filteredCity, setFilteredCity] = useState('All Cities')
@@ -29,7 +27,7 @@ const Events = (props) => {
         : <p >No Events found.</p>
     return (
         <>
-            <Card className="events">
+            <Card className={eventCss.events}>
                 <EventFilter
                     cities={props.cities}
                     selected={filteredCity}

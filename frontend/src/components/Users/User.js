@@ -3,6 +3,7 @@ import Card from "../UI/Card"
 import './../UI/Card.css'
 import './../UI/User.css'
 import './../UI/Users.css'
+import eventCss from '../UI/Event.module.css';
 
 const User = (props) => {
     const [name, setName] = useState(
@@ -27,11 +28,11 @@ const User = (props) => {
                 </h5>
                 <div className="user-description">{user.description}</div>
                 {/* <div className={`card-price ${!user.city ? 'green' : 'blue'}`}>{user.city}</div> */}
-                <div className="card-price" style={{color: ('Bangalore' === user.city)? 'green' : 'blue'}}>{user.city}</div>
-                <div className="card-price" style={{color: ('Bangalore' === user.city)? 'green' : 'blue'}}>{user.address}</div>
-                <div className="card-price">{user.website}</div>
-                <div className="card-price">{user.phone}</div>
-                <div className="card-price">{user.priceStarts}</div>
+                <div className={eventCss.card_rice} style={{color: ('Bangalore' === user.city)? 'green' : 'blue'}}>{user.city}</div>
+                <div className={eventCss.card_rice} style={{color: ('Bangalore' === user.city)? 'green' : 'blue'}}>{user.address}</div>
+                <div className={eventCss.card_rice}>{user.website}</div>
+                <div className={eventCss.card_rice}>{user.phone}</div>
+                <div className={eventCss.card_rice}>{user.priceStarts}</div>
                 <button onClick={clickHandler} className="btn btn-link">Edit</button>
 
                 <section>

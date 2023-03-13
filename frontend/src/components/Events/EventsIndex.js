@@ -1,9 +1,5 @@
 
-import Card from '../UI/Card'
-import '../UI/Events.module.css';
 import React, { useEffect, useState } from 'react';
-// import EventsList from './EventsList';
-// import EventFilter from './EventFilter';
 import axiosClient from '../../Utils/AxiosClient';
 import { cityData } from '../../seeds/city';
 import Events from './Events';

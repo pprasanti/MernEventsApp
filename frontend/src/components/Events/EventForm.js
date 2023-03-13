@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import './../UI/EventForm.module.css';
+import './EventForm.module.css';
 // import { cityData } from './../../seeds/city'
 import EventFilter from './../../components/Events/EventFilter'
 import ErrorModal from '../UI/ErrorModal';

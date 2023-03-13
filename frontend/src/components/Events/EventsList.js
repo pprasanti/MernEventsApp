@@ -1,14 +1,9 @@
 
 import Card from '../UI/Card'
-import Event from './Event';
-import '../UI/Events.module.css';
-import React, { Fragment, useEffect, useState } from 'react';
+import eventCss from './Event.module.css';
+import React, { Fragment, useState } from 'react';
 import NewEvent from './NewEvents';
-// eslint-disable-next-line
-// import { eventsSeed } from './../../seeds/event'
-import axiosClient from '../../Utils/AxiosClient';
 import { Link } from 'react-router-dom';
-// import { useState } from 'react';
 
 const EventsList = (props) => {
   const [events, setEvents] = useState(props.events);
@@ -27,24 +22,28 @@ const EventsList = (props) => {
   return (
     <Fragment>
       <NewEvent onAddEvent={addEventHandler} cities={props.cities}></NewEvent>
-      <Card className="events">
+      <div className={eventCss.events}>
         {events.length > 0 && events.map(event =>
           // <Event key={event._id} event={event} />
           <div key={event._id} >
-            <Card className="event-item flex-row">
-              <div className="col-6 event-card-block">
-                <img className="event-img" src={event.img} alt="" />
+            <Card className={eventCss.item}>
+              <div 
+              className={eventCss.card_block}
+              >
+                <img className={eventCss.img} src={event.img} alt="" />
               </div>
-              <div className="col-6 event-card-block">
-                <h5 className="event-name">
+              <div 
+              className={eventCss.card_block} 
+              >
+                <h5 className={eventCss.name}>
                   <Link to={`/event/${event._id}`} className="link"> {event.name} </Link>
                 </h5>
-                <div className="event-description">{event.description}</div>
-                <div className="card-price" style={{ color: ('Bangalore' === event.city) ? 'green' : 'blue' }}>{event.city}</div>
-                <div className="card-price" style={{ color: ('Bangalore' === event.city) ? 'green' : 'blue' }}>{event.address}</div>
-                <div className="card-price">{event.website}</div>
-                <div className="card-price">{event.phone}</div>
-                <div className="card-price">{event.priceStarts}</div>
+                <div className={eventCss.description}>{event.description}</div>
+                <div className={eventCss.card_rice} style={{ color: ('Bangalore' === event.city) ? 'green' : 'blue' }}>{event.city}</div>
+                <div className={eventCss.card_rice} style={{ color: ('Bangalore' === event.city) ? 'green' : 'blue' }}>{event.address}</div>
+                <div className={eventCss.card_rice}>{event.website}</div>
+                <div className={eventCss.card_rice}>{event.phone}</div>
+                <div className={eventCss.card_rice}>{event.priceStarts}</div>
                 <section>
                   <form
                     action="/events/{ event._id}?_method=DELETE"
@@ -61,11 +60,11 @@ const EventsList = (props) => {
                   </form>
                 </section>
               </div>
-            </Card>
-          </div>
+    </Card>
+          </div >
         )}
-      </Card>
-    </Fragment>
+      </div >
+    </Fragment >
   );
 }
 
