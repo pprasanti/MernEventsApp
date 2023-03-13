@@ -1,0 +1,48 @@
+  <div class="col-6">
+  <h2>Leave a Comment</h2>
+  <form
+    action="/events/<%= event._id %>/comments"
+    method="post"
+    novalidate
+    class="mb-3 validated-form"
+  >
+    <div class="mb-3">
+      <label class="form-label" for="body">Comment</label>
+      <textarea
+        class="form-control"
+        name="text"
+        id="text"
+        cols="30"
+        rows="3"
+        required
+      ></textarea>
+      <div class="valid-feedback">Looks good!</div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label" for="rating">Rating</label>
+      <input
+        class="form-range"
+        type="range"
+        min="1"
+        max="5"
+        name="rating"
+        id="rating"
+      />
+    </div>
+    <button class="btn btn-success">Submit</button>
+  </form>
+  <% for(let comment of event.comments ) { %>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Rating: <%= comment.rating %></h5>
+      <p class="card-text">Comment: <%= comment.text %></p>
+      <form
+        action="/events/<%= event._id %>/comments/<%= comment._id %>?_method=DELETE"
+        method="POST"
+      >
+        <button class="btn btn-sm btn-danger">Delete</button>
+      </form>
+    </div>
+  </div>
+  <% } %>
+</div>

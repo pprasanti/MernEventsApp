@@ -1,0 +1,40 @@
+<% layout('layout/template') %>
+<h2>Events</h2>
+<section>
+  <a href="/events/new">Add Event</a>
+</section>
+<br />
+<section>
+  <% for(let event of events ) { %>
+  <div class="card align-middle" mb-3>
+    <div class="row align-middle">
+      <div class="col-md-4 align-middle" mb-3>
+        <img class="img-fluid" src="<%= event.img %>" alt="" />
+      </div>
+      <div class="col-md-8" mb-3>
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href="/events/<%= event._id %>"> <%= event.name %> </a>
+          </h5>
+          <div class="card-text"><%= event.description %></div>
+          <div class="card-text"><%= event.website %></div>
+          <div class="card-text"><%= event.phone %></div>
+          <div class="card-text"><%= event.priceStarts %></div>
+          <section>
+            <form
+              action="/events/<%= event._id %>?_method=DELETE"
+              method="post"
+            >
+              <a href="/events/<%= event._id %>/edit">Edit</a>
+              <!-- <a href="/events/<%= event._id %>/comments/new">Add Comment</a> -->
+              <a href="/events/<%= event._id %>">View Comments</a>
+
+              <button class="btn btn-link">Delete</button>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% } %>
+</section>

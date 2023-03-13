@@ -1,0 +1,24 @@
+<% layout('layout/template') %>
+  <!-- Not Used Anymore -->
+
+    <h2>Update Comment</h2>
+    <h3>Event - <%= name %>
+    </h3>
+    <br><br>
+    <section>
+        <form action="/events/<%= eid %>/comments/<%= id %>?_method=PATCH" method="post">
+            <section>
+                <label for="text">Comment : </label>
+                <br>
+                <textarea id="text" name="text" cols="32" rows="4" placeholder="Comment"><%= comment.text %></textarea>
+            </section>
+            <section>
+                <label for="rating">Rating : </label>
+                <input type="text" id="rating" name="rating" value="<%= comment.rating %>" placeholder="Rating"></input>
+            </section>
+            <br />
+            <button class="btn btn-success">Update</button>
+            <a class="btn btn-dark" href="/events/<%= eid %>">Back</a>
+        </form>
+
+    </section>

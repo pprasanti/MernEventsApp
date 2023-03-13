@@ -1,0 +1,54 @@
+<% layout('layout/template') %>
+
+    <h2>Create New User</h2>
+    <a href="/users">Back to Users</a>
+    <br><br>
+    <section>
+        <form action="/users" method="post">
+            <section>
+                <label for="name">First Name : </label>
+                <input type="text" id="firstName" name="firstName" placeholder="First Name"></input>
+            </section>
+            <section>
+                <label for="name">Last Name : </label>
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name"></input>
+            </section>
+            <section>
+                <label for="address">Address : </label>
+                <br>
+                <section>
+                    <label for="street">Street : </label>
+                    <br>
+                    <input type="text" id="street" name="street" placeholder="Street"></input>
+                </section>
+                <section>
+                    <label for="city">city : </label>
+                    <br>
+                    <input type="text" id="city" name="city" placeholder="city"></input>
+                </section>
+                <section>
+                    <label for="state">State : </label>
+                    <br>
+                    <input type="text" id="state" name="state" placeholder="State"></input>
+                </section>
+                <section>
+                    <label for="country">Country : </label>
+                    <br>
+                    <input type="text" id="country" name="country" placeholder="Country"></input>
+                </section>
+            </section>
+            <section>
+                <label for="email">Email : </label>
+                <input type="text" id="email" name="email" placeholder="Email"></input>
+            </section>
+            <section>
+                <label for="phone">Phone : </label>
+                <input type="text" id="phone" name="phone" user.phone %>" placeholder="Phone"></input>
+            </section>
+            <section>
+                <label for="image">Image : </label>
+                <input type="text" id="image" name="image" user.image %>" placeholder="Image"></input>
+            </section>
+            <button>Submit</button>
+        </form>
+    </section>

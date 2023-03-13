@@ -1,0 +1,26 @@
+<% layout('layout/template') %>
+<br>
+<br>
+<div class="row">
+  <div class="">
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading"><%= err.message %></h4>
+      <p>
+        <%= err.stack %>
+      </p>
+    </div>
+  </div>
+</div>
+<% if (error && '' != error) { %>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <%= error %>
+    <button
+      type="button"
+      class="btn-close"
+      data-ds-dismiss="alert"
+      aria-label="Close"
+    >
+    </button>
+  </div>
+  <% } %>
+  

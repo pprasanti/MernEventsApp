@@ -1,0 +1,16 @@
+<% layout('layout/template') %>
+  <!-- Not Used Anymore -->
+
+<section>
+  <% for(let comment of comments ) { %>
+    <div class="card mb-3 col-md-6"">
+        <div class="card-body">
+            <h5 class="card-title">Rating: <%= comment.rating %></h5>
+            <p class="card-text">Comment: <%= comment.text %></p>
+            <form action="/events/<%= eid %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                <button class="btn btn-sm btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+  <% } %>
+</section>

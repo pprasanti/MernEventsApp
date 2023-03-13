@@ -1,0 +1,51 @@
+<% layout('layout/template') %>
+
+  <h2>User Deatils</h2>
+  <a href="/users">Back to Users</a>
+  <br /><br />
+  <section>
+    <form action="/users/<%= user._id %>?_method=PATCH" method="post">
+      <section>
+        <label for="name">User Name : </label>
+        <label id="name" name="name">
+          <%= user.name %>
+        </label>
+      </section>
+      <section>
+        <label for="description">Description : </label>
+        <label id="description" name="description">
+          <%= user.description %>
+        </label>
+      </section>
+      <section>
+        <label for="address">Address : </label>
+        <label id="address" name="address">
+          <%= user.address %>
+        </label>
+      </section>
+      <section>
+        <label for="website">Website : </label>
+        <label id="website" name="website">
+          <%= user.website %>
+        </label>
+      </section>
+      <section>
+        <label for="phone">Phone : </label>
+        <label id="phone" name="phone">
+          <%= user.phone %>
+        </label>
+      </section>
+      <section>
+        <label for="image">Image : </label>
+        <label id="image" name="image">
+          <%= user.image %>
+        </label>
+      </section>
+      <section>
+        <label for="priceStarts">Starts From : </label>
+        <label id="priceStarts" name="priceStarts">
+          <%= user.priceStarts %>
+        </label>
+      </section>
+    </form>
+  </section>
