@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: apieventcontainer
-        image: prasanti85/merneventsserver:dev
+        image: prasanti85/apimernserver:dev
         imagePullPolicy: Always
         resources:
           limits:

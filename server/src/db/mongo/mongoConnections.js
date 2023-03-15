@@ -12,7 +12,10 @@ export function dbConnect() {
             uri = 'mongodb+srv://' + process.env.MONGODB_USERNAME + ':' + process.env.MONGODB_PASSWORD
                 + '@' + process.env.MONGODB_CLUSTER + '/' + process.env.MONGODB_DB + '?retryWrites=true&w=majority'
         } else {
-            uri = process.env.MONGODB_CLUSTER + '/' + process.env.MONGODB_DB + '?retryWrites=true&w=majority'
+            // uri = process.env.MONGODB_CLUSTER + '/' + process.env.MONGODB_DB + '?authSource=admin'
+            // uri ='mongodb://' + process.env.MONGODB_USERNAME + ':' + process.env.MONGODB_PASSWORD
+            // + '@' + process.env.MONGODB_CLUSTER + '/' + process.env.MONGODB_DB +'=true&authSource=admin&authMechanism=SCRAM-SHA-1'
+            uri ='mongodb://' + process.env.MONGODB_CLUSTER + '/' + process.env.MONGODB_DB
         }
 
         console.log(uri)
@@ -29,7 +32,7 @@ export function dbConnect() {
             })
             .catch(error => {
                 console.log('Unable to connect to MongoDB Atlas!');
-                console.log(`ERROR Connecting DB: ${error} `)
+                console.log(`ERROR Connecting DB : ${error}`)
                 state.db = false
             });
     }

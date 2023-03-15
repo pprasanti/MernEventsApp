@@ -1,0 +1,25 @@
+FROM node:19-alpine
+
+WORKDIR /app
+
+COPY package.json .
+
+RUN npm install
+
+COPY . .
+
+ENV ENVIRONMENT Staging
+RUN echo "${ENVIRONMENT}"
+
+CMD ["sh", "-c", "node src/server.js ${ENVIRONMENT}"]
+
+
+# # Setup Kubernet:
+# docker buildx build --platform linux/amd64,linux/arm64 -t prasanti85/apimernserver:staging -f Dockerfile.staging . --push
+# kubectl create deployment apimernserver --image=prasanti85/apimernserver
+# kubectl expose deployment apimernserver --type=LoadBalancer --port=4000
+# minikube service apimernserver
+
+# kubectl get deployments && kubectl get pods && kubectl get namespaces && kubectl get services 
+# kubectl delete deployment apimernserver && kubectl delete service apimernserver
+# kubectl logs  <podname>  --all-containers
