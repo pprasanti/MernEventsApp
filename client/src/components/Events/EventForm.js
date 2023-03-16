@@ -47,7 +47,7 @@ const EventForm = (props) => {
 
     const priceChangeHandler = (event) => {
         setUserInput((prevState) => {
-            return { ...prevState, price: event.target.value }
+            return { ...prevState, priceStarts: event.target.value }
         })
     }
 
@@ -110,7 +110,7 @@ const EventForm = (props) => {
         <Wrapper>
             {error && <ErrorModal onConfirm={errorHandler} title={error.title} message={error.message}></ErrorModal>}
             <div>
-                <form onSubmit={submitHandler}>
+                <form className={classes.form} onSubmit={submitHandler}>
                     <div>
                         <div className={classes.control}>
                             <label >Name</label>
@@ -136,7 +136,7 @@ const EventForm = (props) => {
                             <input type='text' value={userInput.website} onChange={websiteChangeHandler} />
                         </div>
                         <div className={classes.control}>
-                            <label>priceStarts</label>
+                            <label>Price Starts</label>
                             <input type='text' value={userInput.priceStarts} onChange={priceChangeHandler} />
                         </div>
                         <div className={classes.control}>

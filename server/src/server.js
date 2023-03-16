@@ -29,6 +29,12 @@ const app = new express();
 loadConfig()
 connectDB(process.env.DB_PROVIDER)
 
+app.use((req,res,next)=>{
+    res.setHeader('Access-Control-Allow-Origin','*');
+    res.setHeader('Access-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
+    res.setHeader('Access-Control-Allow-Methods','Content-Type','Authorization');
+    next(); 
+})
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(methodOverride("_method"))
@@ -36,6 +42,8 @@ app.use(cors());
 app.use(mongoSanitize({
     replaceWith: '_'
 }));
+
+
 
 app.use(session({
     // store,

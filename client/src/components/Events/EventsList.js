@@ -8,8 +8,6 @@ import axiosClient from '../../Utils/AxiosClient';
 
 const EventsList = (props) => {
   const [events, setEvents] = useState(props.events);
-  // eslint-disable-next-line
-  const [error, setError] = useState('')
   const [user, setUser] = React.useState(
     JSON.parse(localStorage.getItem('user'))
   );
@@ -20,9 +18,9 @@ const EventsList = (props) => {
 
   return (
     <Fragment>
-      <NewEvent onAddEvent={addEventHandler} cities={props.cities}></NewEvent>
       <div className={eventCss.events}>
-        {events.length > 0 && events.map(event =>
+      {
+        (events.length > 0 && events.map(event =>
           // <Event key={event._id} event={event} />
           <div key={event._id} >
             <Card className={eventCss.item}>
@@ -61,7 +59,7 @@ const EventsList = (props) => {
               </div>
             </Card>
           </div >
-        )}
+        ))}
         {events.length <= 0 && <p >No Events found.</p>}
       </div >
     </Fragment >

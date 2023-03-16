@@ -7,7 +7,6 @@ import EventFilter from './EventFilter';
 
 const Events = (props) => {
     const [filteredCity, setFilteredCity] = useState('All Cities')
-    const [error, setError] = useState('')
 
     const filterChangeHandler = async (cityVal) => {
         console.log("yyyyyyy")
@@ -26,8 +25,6 @@ const Events = (props) => {
         props.onAddEvent(eventData)
     }
 
-    const eventContent = <EventsList events={filteredEvents} cities={props.cities} onAddEvent={addEventHandler} />
-
     return (
         <>
             <Card className={eventCss.events}>
@@ -37,7 +34,10 @@ const Events = (props) => {
                     onChangeFilter={filterChangeHandler}
                 />
                 <br />
-                {eventContent}
+                <EventsList events={filteredEvents} cities={props.cities} 
+                loading={props.loading}
+                error={props.error}
+                onAddEvent={addEventHandler} />
             </Card>
             {/* } */}
         </>
