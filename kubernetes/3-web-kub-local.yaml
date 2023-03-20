@@ -1,0 +1,74 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloud-frontend-service
+spec:
+  selector:
+    app: cloud-frontend
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: http-port
+  type: LoadBalancer
+
+  # type: ClusterIP
+  # ports:
+  #   - port: 4800
+  #     targetPort: 4800
+
+  # type: NodePort
+  # ports:
+  #   - port: 4800
+  #     protocol: TCP
+  #     targetPort: 4800
+  #     nodePort: 30008
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-frontend-deployment
+  labels:
+    app: cloud-frontend  
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloud-frontend
+  template:
+    metadata:
+      labels:
+        app: cloud-frontend
+    spec:
+      containers:
+      - name: cloud-frontend
+        image: prasanti85/mernfrontend:staging
+        imagePullPolicy: Always
+        env:
+          - name: API_FRONTEND_SERVICE_HOST
+            value: "http://cloud-backend-service"
+          - name: API_FRONTEND_SERVICE_HOST1
+            value: "http://cloud-backend-service"
+          - name: API_FRONTEND_SERVICE_HOST2
+            value: "http://cloud-backend-service"
+            # value: "10.96.92.87"
+            # value: "192.168.49.2:31801"
+            # value: "http://10.102.51.207:4000"
+        resources:
+          limits:
+            memory: "129Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+          name: http-port
+
+
+# aws eks --region us-west-1 update-kubeconfig --name eksClusterPPM
+
+# kubectl create -f kubernetes/web-eks.yaml
+# kubectl apply -f=kubernetes/web-eks.yaml
+# kubectl get deployments && kubectl get pods && kubectl get namespaces && kubectl get services 
+
+# kubectl delete -f=kubernetes/web-eks.yaml
+

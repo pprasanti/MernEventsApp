@@ -4,29 +4,30 @@
 version: '3.8'
 
 services:
-  server:
-    build:
-      context: ./server
-      dockerfile: Dockerfile
-    image: prasanti85/webmernserver:dev
-    container_name: server
-    command: npm run start
+  cloud-backend-service:
+    # platform: linux/amd64,linux/arm64
+    # build:
+    #   context: ./backend
+    #   dockerfile: Dockerfile.staging
+    image: prasanti85/mernbackend:staging
+    container_name: cloud-backend
+    command: node src/backend.js
     volumes:
-      - ./server/:/usr/src/app
+      - ./backend/:/usr/src/app
       - /usr/src/app/node_modules
     ports:
       - "4000:4000"
     depends_on:
-      - mongo
-    env_file: ./server/.env
-    environment:
-      - NODE_ENV=Development
+      - mongodb-service
+    # env_file: ./backend/.env
+    # environment:
+      # - NODE_ENV=Development
     networks:
       - mernnet
 
-  mongo:
+  mongodb-service:
     image: mongo:6.0.4
-    container_name: mongo
+    container_name: mongodb
     restart: always
     # command: mongod
     # environment:
@@ -42,22 +43,23 @@ services:
     networks:
       - mernnet
 
-  client:
-    build:
-      context: ./client
-      dockerfile: Dockerfile
-    image: prasanti85/apimernserver:dev
-    container_name: client
-    command: npm start
+  cloud-frontend-service:
+    # platform: linux/amd64,linux/arm64
+    # build:
+    #   context: ./frontend
+    #   dockerfile: Dockerfile.staging
+    image: prasanti85/mernfrontend
+    container_name: cloud-frontend
+    command: npm run build-stage
     # environment:
     #   - REACT_APP_BASE_URL=http://localhost:3000
     #   - REACT_APP_API_URL=http://localhost:4000
     volumes:
-      - ./client/:/usr/app
-      - ./client/.env:/usr/app/.env
+      - ./frontend/:/usr/app
+      - ./frontend/.env:/usr/app/.env
       - /usr/app/node_modules
     depends_on:
-      - server
+      - cloud-backend-service
     ports:
       - "3000:3000"
     networks:

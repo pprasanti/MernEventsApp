@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloud-backend-service
+spec:
+  selector:
+    app: cloud-backend
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: nodejs-port
+  type: LoadBalancer
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-backend-deployment
+  labels:
+    app: cloud-backend  
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloud-backend
+  template:
+    metadata:
+      labels:
+        app: cloud-backend
+    spec:
+      containers:
+      - name: cloud-backend
+        image: prasanti85/mernbackend:staging
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "129Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 4000
+          name: nodejs-port
+
+---
+
+# kubectl create --save-config -f kubernetes/api-kub-local.yaml
+# kubectl apply -f=kubernetes/api-kub.yaml
+# kubectl get deployments && kubectl get pods && kubectl get namespaces && kubectl get services && minikube service apieventservice
+
+# kubectl delete -f=kubernetes/api-kub.yaml
+
+# # Setup Minikube
+# brew install minikube
+# minikube start --driver=docker
+# # Setup Kubelet
+# brew install kubectl

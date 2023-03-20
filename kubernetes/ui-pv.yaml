@@ -1,0 +1,114 @@
+# Storage class configuration
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: efs-sc
+provisioner: efs.csi.aws.com
+
+---
+# PersistentVolume
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: efs-pv
+spec:
+  capacity:
+    storage: 5Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  # persistentVolumeReclaimPolicy: Recycle
+  storageClassName: efs-sc
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: fs-03c52baeac5ebd350
+  # mountOptions:
+  #   - hard
+  #   - nfsvers=4.1
+  # nfs:
+  #   path: /tmp
+  #   backend: 172.17.0.2
+
+---
+# PersistentVolumeClaim
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: efs-pvc
+spec:
+  resources:
+    requests:
+      storage: 5Gi
+  # volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  storageClassName: efs-sc
+
+
+---
+# service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: frontend
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      # port: 443
+      # targetPort: 443
+
+---
+# deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+      # tier: backend
+    # matchExpression:
+    #   - {key: app, operator: In, value: [shobiz-pod]}
+  template:
+    metadata:
+      labels:
+        app: frontend
+        # tier: backend
+    spec:
+      containers:
+        - name: frontend
+          image: prasanti85/reactjs-prod:latest
+          # imagePullPolicy: Always
+          env:
+            - name: BACKEND_SERVICE_SERVICE_HOST
+              # value: "10.96.92.87"
+              # value: "192.168.49.2:31801"
+              value: "backend-service.default"
+          volumeMount:
+            - name: efs-vol
+              mountPath: /app/events
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+      volume:
+        - name: efs-vol
+          persistentVolumeClaim:
+            claimName: efs-pvc
+          
+
+      
+
+# ---
+# # kubectl apply -f=master-deployment.yaml
+# # minikube service shobiz-service
+# # minikube dashboard
+# # kubectl delete -f=master-deployment.yaml
+# # kubectl delete deployments,services -l group=example

@@ -18,7 +18,7 @@ export const loadConfig = () => {
     dotenv.config({ path: `${path}` })
 
     console.log(`\nApp is running on - `)
-    console.log(`ENVIRONMENT : ${environment}`)
+    console.log(`NODE_ENV : ${environment}`)
     console.log(`PORT        : ${process.env.PORT}`)
     console.log(`DATABASE    : ${process.env.MONGODB_DB}\n`)
 }
