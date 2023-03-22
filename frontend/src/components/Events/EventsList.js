@@ -4,7 +4,7 @@ import eventCss from './Event.module.css';
 import React, { Fragment, useState } from 'react';
 import NewEvent from './NewEvents';
 import { Link } from 'react-router-dom';
-import axiosClient from '../../Utils/AxiosClient';
+import axiosClient from '../../utils/AxiosClient';
 
 const EventsList = (props) => {
   const [events, setEvents] = useState(props.events);

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React from 'react';
-import axiosClient from '../Utils/AxiosClient';
+import axiosClient from '../utils/AxiosClient';
 
 const AuthContext = React.createContext({
     user: false,
@@ -34,7 +34,7 @@ export const AuthContextProvider = (props) => {
 
     const loginHandler = async (email, password) => {
         try {
-            const response = await axiosClient.post("/api/auth/login", {
+            const response = await axiosClient.post("/auth/login", {
                 // username: enteredUsername,
                 email: email,
                 password: password,

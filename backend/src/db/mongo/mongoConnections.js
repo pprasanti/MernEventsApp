@@ -14,7 +14,9 @@ export function dbConnect() {
         } else {
             // uri = process.env.MONGODB_CLUSTER + '/' + process.env.MONGODB_DB + '?authSource=admin'
             // uri ='mongodb://' + process.env.MONGODB_USERNAME + ':' + process.env.MONGODB_PASSWORD
-            // + '@' + process.env.MONGODB_CLUSTER + '/' + process.env.MONGODB_DB +'=true&authSource=admin&authMechanism=SCRAM-SHA-1'
+            // + '@' + process.env.MONGODB_CLUSTER 
+            // + '/' + process.env.MONGODB_DB 
+            // +'=true&authSource=admin&authMechanism=SCRAM-SHA-1'
             uri ='mongodb://' + process.env.MONGODB_CLUSTER + '/' + process.env.MONGODB_DB
         }
 

@@ -9,6 +9,7 @@ export async function seedUsers() {
 
 // Add a new User / Register User
 export async function createUser(userDTO) {
+    console.log("I'm in Register22")
     const user = new User(userDTO)
     return await user.save()
     // req.session.userId = user._id

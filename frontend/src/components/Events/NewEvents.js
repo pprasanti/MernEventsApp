@@ -6,7 +6,7 @@ import AuthContext from './../../context/auth-context'
 import ErrorModal from '../UI/ErrorModal';
 import useHttp from './../../hooks/use-http'
 import classes from './NewEvent.module.css';
-import axiosClient from '../../Utils/AxiosClient';
+import axiosClient from '../../utils/AxiosClient';
 
 const NewEvent = (props) => {
   const authCtx = useContext(AuthContext);
@@ -23,7 +23,7 @@ const NewEvent = (props) => {
 
   const saveEventHandler = async (eventData) => {
     // addEvent({
-    //   url: '/api/events',
+    //   url: '/events',
     //   method: 'POST',
     //   // onSuccess: (res) => {
     //   //     setEvents(res.data);
@@ -35,7 +35,7 @@ const NewEvent = (props) => {
     //   // body: eventData
     // }, createEvent.bind(null, eventData))
 
-    let createdEvent = await axiosClient.post('/api/events', eventData)
+    let createdEvent = await axiosClient.post('/events', eventData)
     createdEvent = ({ id: createdEvent.name, ...createdEvent })
     await props.onAddEvent(createdEvent)
     setIsEditing(false)

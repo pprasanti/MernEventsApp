@@ -27,15 +27,15 @@ const Input = React.forwardRef((props, ref) => {
                 type={props.type}
                 id={props.id}
                 className="input"
-                placeholder="Enter Your Email"
+                placeholder={props.placeholder}
                 value={props.value}
                 onChange={props.onChange}
                 onBlur={props.onBlur}
             />
-            {!props.isValid && <p className="error-text">{props.error}</p>}
+            {props.error && !props.isValid && (<span className="error-text">{props.error}</span>)}
             {props.children}
         </div>
     );
 });
 
-export default Input;
+export default React.memo(Input);

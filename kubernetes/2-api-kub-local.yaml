@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: cloud-backend-service
+  name: mern-backend-service
 spec:
   selector:
-    app: cloud-backend
+    app: mern-backend
   ports:
     - port: 80
       protocol: TCP
@@ -16,21 +16,21 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cloud-backend-deployment
+  name: mern-backend-deployment
   labels:
-    app: cloud-backend  
+    app: mern-backend  
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cloud-backend
+      app: mern-backend
   template:
     metadata:
       labels:
-        app: cloud-backend
+        app: mern-backend
     spec:
       containers:
-      - name: cloud-backend
+      - name: mern-backend
         image: prasanti85/mernbackend:staging
         imagePullPolicy: Always
         resources:

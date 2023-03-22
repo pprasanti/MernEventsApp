@@ -23,8 +23,8 @@ const userSchema = new Schema(
         },
         username: {
             type: String,
-            required: [true, 'Username cannot be blank'],
-            unique: true
+            // required: [true, 'Username cannot be blank'],
+            // unique: true
         },
         roles: [
             {
@@ -39,6 +39,7 @@ const userSchema = new Schema(
         },
         phone: {
             type: Number,
+            required: [true, 'Phone cannot be blank'],
             length: [10, 'Phone No. must be 10 digit']
         },
         address: [{

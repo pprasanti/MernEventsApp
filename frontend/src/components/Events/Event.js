@@ -2,7 +2,7 @@ import React, { useState } from "react"
 // eslint-disable-next-line
 import { Button } from "react-bootstrap"
 import { Link, useLocation } from "react-router-dom"
-import axiosClient from './../../Utils/AxiosClient'
+import axiosClient from './../../utils/AxiosClient'
 import Card from "../UI/Card"
 import './../UI/Card.module.css'
 import eventCss from './Event.module.css';
@@ -23,7 +23,7 @@ const Event = () => {
         console.log(eventId);
 
         const getEvent = () => {
-            axiosClient.get(`/api/events/${eventId}`)
+            axiosClient.get(`/events/${eventId}`)
                 .then(res => {
                     console.log(res.data);
                     setEvent(res.data);

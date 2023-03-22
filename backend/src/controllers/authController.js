@@ -10,7 +10,7 @@ const authController = {
     // JWT Bcrypt Authentication
     register: ({ createUser }, async (req, res) => {
         const User = new UserDTO(req.body)
-        User.validate(true)
+        await User.validate(true)
         console.log("I'm in Register")
 
         const result = await createUser(User)

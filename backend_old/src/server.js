@@ -112,23 +112,23 @@ app.get('/verifySession', (req, res) => {
 
 })
 
-app.get('/register', (req, res) => {
-    const { username = 'Anonymous' } = req.query
-    req.session.username = username
-    console.log(req.query)
-    console.log(req.session.username)
-    // console.log(req.signedCookies)
-    res.redirect('/greet')
-    // res.send({ msg: `Hello Mr. ${req.session.username}!!!` })
+// app.get('/register', (req, res) => {
+//     const { username = 'Anonymous' } = req.query
+//     req.session.username = username
+//     console.log(req.query)
+//     console.log(req.session.username)
+//     // console.log(req.signedCookies)
+//     res.redirect('/greet')
+//     // res.send({ msg: `Hello Mr. ${req.session.username}!!!` })
 
-})
+// })
 
-app.get('/greet', (req, res) => {
-    console.log(req.session.username)
-    // console.log(req.signedCookies)
-    res.send({ msg: `Hello Mr. ${req.session.username}!!!` })
+// app.get('/greet', (req, res) => {
+//     console.log(req.session.username)
+//     // console.log(req.signedCookies)
+//     res.send({ msg: `Hello Mr. ${req.session.username}!!!` })
 
-})
+// })
 
 app.get('/', (req, res) => {
     res.render('index')

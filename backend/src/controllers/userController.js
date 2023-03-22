@@ -23,6 +23,7 @@ const userController = {
         const User = new UserDTO(req.body)
         User.validate();
 
+        console.log("kkk")
         const result = await createUser(User)
         return res.status(200).json(result);
     }),

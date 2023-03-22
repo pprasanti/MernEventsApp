@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: cloud-frontend-service
+  name: mern-frontend-service
 spec:
   selector:
-    app: cloud-frontend
+    app: mern-frontend
   ports:
     - port: 80
       protocol: TCP
@@ -28,30 +28,30 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cloud-frontend-deployment
+  name: mern-frontend-deployment
   labels:
-    app: cloud-frontend  
+    app: mern-frontend  
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cloud-frontend
+      app: mern-frontend
   template:
     metadata:
       labels:
-        app: cloud-frontend
+        app: mern-frontend
     spec:
       containers:
-      - name: cloud-frontend
+      - name: mern-frontend
         image: prasanti85/mernfrontend:staging
         imagePullPolicy: Always
         env:
           - name: API_FRONTEND_SERVICE_HOST
-            value: "http://cloud-backend-service"
+            value: "http://mern-backend-service"
           - name: API_FRONTEND_SERVICE_HOST1
-            value: "http://cloud-backend-service"
+            value: "http://mern-backend-service"
           - name: API_FRONTEND_SERVICE_HOST2
-            value: "http://cloud-backend-service"
+            value: "http://mern-backend-service"
             # value: "10.96.92.87"
             # value: "192.168.49.2:31801"
             # value: "http://10.102.51.207:4000"

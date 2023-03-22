@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import axiosClient from '../../Utils/AxiosClient';
+import axiosClient from '../../utils/AxiosClient';
 import { cityData } from '../../seeds/city';
 import Events from './Events';
 import useHttp from './../../hooks/use-http'
@@ -25,7 +25,7 @@ const EventsIndex = () => {
         }
 
         getEvents({
-            url: '/api/events',
+            url: '/events',
             method: 'GET',
         }, transformEvents)
     }, [isAdding, getEvents]);

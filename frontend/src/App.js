@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Event from './components/Events/Event';
 import EventsIndex from './components/Events/EventsIndex';
 import LoginForm from './components/Login/Login';
+import SignupForm from './components/Login/Signup';
 import MainHeader from './components/MainHeader/MainHeader';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AuthContext from './context/auth-context';
@@ -28,7 +29,7 @@ function App() {
               <Route path="/events" element={<EventsIndex />} />
               <Route path="/event/:eventId" element={<Event />} />
               <Route path="/login" element={ctx.isLoggedIn ? <Home /> : <LoginForm />} />
-              {/* <Route path="/signup" element={<SignUpPage />} /> */}
+              <Route path="/register" element={ctx.isLoggedIn ? <Home /> : <SignupForm />} />
             </Routes>
           </div>
         </div>

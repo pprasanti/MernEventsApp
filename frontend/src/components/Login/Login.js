@@ -37,6 +37,7 @@ const LoginForm = () => {
 
     const [error, setError] = useState();
     const [formIsValid, setFormIsValid] = useState(false);
+    // let formIsValid = false;
     const navigate = useNavigate();
 
     const [emailState, dispatchEmail] = useReducer(emailReducer,
@@ -50,6 +51,9 @@ const LoginForm = () => {
     const { isValid: emailIsValid } = emailState
     const { isValid: passwordIsValid } = passwordState
 
+    // if(emailIsValid && passwordIsValid){
+    //     formIsValid = true;
+    // }
     useEffect(() => {
         const identifier = setTimeout(() => {
             setFormIsValid(
