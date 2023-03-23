@@ -10,9 +10,15 @@ import SignupForm from './components/Login/Signup';
 import MainHeader from './components/MainHeader/MainHeader';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AuthContext from './context/auth-context';
+import EventModal from './components/Events/EventModal';
 
 function App() {
   const ctx = useContext(AuthContext)
+
+  const hideEventModal = () => {
+  
+  }
+
   return (
     <React.Fragment>
       {console.log(`ctx.isLoggedIn : ${ctx.isLoggedIn}`)}
@@ -27,7 +33,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/events" element={<EventsIndex />} />
-              <Route path="/event/:eventId" element={<Event />} />
+              <Route path="/event/:eventId" element={<EventModal onClose={hideEventModal} />} />
               <Route path="/login" element={ctx.isLoggedIn ? <Home /> : <LoginForm />} />
               <Route path="/register" element={ctx.isLoggedIn ? <Home /> : <SignupForm />} />
             </Routes>

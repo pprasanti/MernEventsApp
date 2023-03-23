@@ -32,7 +32,7 @@ const Input = React.forwardRef((props, ref) => {
                 onChange={props.onChange}
                 onBlur={props.onBlur}
             />
-            {props.error && !props.isValid && (<span className="error-text">{props.error}</span>)}
+            {!props.isValid && (<span className={`${classes.error}`}>{props.error}</span>)}
             {props.children}
         </div>
     );

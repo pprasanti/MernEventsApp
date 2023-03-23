@@ -7,6 +7,8 @@ import useHttp from './../../hooks/use-http'
 import NewEvent from './NewEvents';
 
 const EventsIndex = () => {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
     const [events, setEvents] = useState([]);
     const [isAdding, setIsAdding] = useState(false);
     const [cities, setCities] = useState(
@@ -14,21 +16,23 @@ const EventsIndex = () => {
     );
     const [filteredCity, setFilteredCity] = useState('All Cities')
 
-    const { isLoading, error, sendRequest: getEvents } = useHttp();
-
     useEffect(() => {
-        const transformEvents = (eventsObj) => {
-            console.log('eventsObj : ')
-            console.log(eventsObj)
-            setEvents(eventsObj.data)
-            setIsAdding(true)
-        }
+        setLoading(true)
 
-        getEvents({
-            url: '/events',
-            method: 'GET',
-        }, transformEvents)
-    }, [isAdding, getEvents]);
+        const getEvents = async () => {
+            await axiosClient.get(`/events`)
+                .then(res => {
+                    console.log(res.data.data);
+                    setEvents(res.data.data);
+                })
+                .catch(err => {
+                    setError(err.message);
+                })
+            setIsAdding(false)
+            setLoading(false)
+        }
+        getEvents();
+    }, []);
 
     const addEventHandler = async (eventData) => {
         setIsAdding(true)
@@ -39,10 +43,10 @@ const EventsIndex = () => {
     return (
         <React.Fragment>
             <NewEvent onAddEvent={addEventHandler} cities={cities}></NewEvent>
-            {isLoading
+            {loading
                 ? <> Loading ... </>
                 : <Events cities={cities} events={events} filteredCity={filteredCity}
-                    loading={isLoading}
+                    loading={loading}
                     error={error}
                     onAddEvent={addEventHandler} />
             }

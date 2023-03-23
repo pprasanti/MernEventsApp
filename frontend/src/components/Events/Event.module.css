@@ -11,6 +11,11 @@
   color: white;
 }
 
+.btn {
+  margin-top: 10px !important;
+  padding: 0px !important;
+}
+
 .item {
   display: flex;
   /* display: grid; */

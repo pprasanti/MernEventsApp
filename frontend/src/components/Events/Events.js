@@ -4,17 +4,13 @@ import eventCss from './Event.module.css';
 import React, { useState } from 'react';
 import EventsList from './EventsList';
 import EventFilter from './EventFilter';
+import EventModal from './EventModal';
 
 const Events = (props) => {
     const [filteredCity, setFilteredCity] = useState('All Cities')
-
     const filterChangeHandler = async (cityVal) => {
-        console.log("yyyyyyy")
-
         const City = props.cities.find((city) => city.name == cityVal)
-        console.log(City.name)
         setFilteredCity(City.name)
-        console.log(`filteredCity : ${filteredCity}`)
     }
 
     const filteredEvents = props.events.filter((event) => (
@@ -34,10 +30,11 @@ const Events = (props) => {
                     onChangeFilter={filterChangeHandler}
                 />
                 <br />
-                <EventsList events={filteredEvents} cities={props.cities} 
-                loading={props.loading}
-                error={props.error}
-                onAddEvent={addEventHandler} />
+                <EventsList events={filteredEvents} cities={props.cities}
+                    loading={props.loading}
+                    error={props.error}
+                    onAddEvent={addEventHandler}
+                />
             </Card>
             {/* } */}
         </>
